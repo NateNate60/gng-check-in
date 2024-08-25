@@ -29,11 +29,11 @@ function Logo () {
 
 function NewPlayerButton () {
     return (
-        <button style={{float: "inline-end"}} className="green-button">
+        <button style={{float: "inline-end", width: 350}} className="green-button">
             <a href="/new">
                 <Image
                     src="/new_user.png"
-                    width="300"
+                    width="250"
                     height="250"
                 />
                 <br/>
@@ -45,7 +45,7 @@ function NewPlayerButton () {
 
 function ExistingPlayerButton () {
     return (
-        <button style={{float: "inline-start"}} class="blue-button">
+        <button style={{float: "inline-start", width: 350}} class="blue-button">
             <a href="/existing">
                 <Image
                     src="/existing_user.png"
