@@ -12,7 +12,7 @@ export default function NewPlayerPage () {
             <div className="centre-align" style={{width: "80%"}}>
                 <h1 className="page-title">Add new profile</h1>
                 <BackButton/>
-                <BlueTextButton text="I already have a profile" float="right"/>
+                <BlueTextButton text="I already have a profile" float="right" href="/existing"/>
                 <p style={{textAlign: "center"}}>Please enter your information below.</p>
             </div>
             <NewPlayerForm />
