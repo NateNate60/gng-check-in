@@ -1,7 +1,7 @@
 export default function WhiteTextButton (props) {
     return (
         <span style={{float: props.float}}>
-            <button class="white-button" onClick={props.onClick}>
+            <button className="white-button" onClick={props.onClick}>
                 <a href={props.href}>
                 {props.text} 
                 </a>
