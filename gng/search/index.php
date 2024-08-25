@@ -23,11 +23,13 @@ if ($query != "" && (strpos($query, "_") === false) && (strpos($query, "%") === 
         $result = $sql->get_result();
         $count = 0;
         foreach ($result->fetch_all() as $k=>$v) {
+            $count++;
             if ($count > 10) {
                 http_response_code(400);
                 echo '{"error": "Too many results"}';
+                exit;
             }
-            $count++;
+           
             $player = array(
                 "first_name" => $v[1],
                 "last_name" => $v[2],
