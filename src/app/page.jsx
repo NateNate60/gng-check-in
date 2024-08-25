@@ -29,7 +29,7 @@ function Logo () {
 
 function NewPlayerButton () {
     return (
-        <button style={{float: "inline-end"}} class="green-button">
+        <button style={{float: "inline-end"}} className="green-button">
             <a href="/new">
                 <Image
                     src="/new_user.png"
