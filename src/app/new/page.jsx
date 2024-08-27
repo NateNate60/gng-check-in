@@ -1,5 +1,6 @@
 "use client"
 import { useState } from "react"
+import { useRouter } from "next/navigation"
 
 import "../style.css"
 import BackButton from "../components/backbutton.jsx"
@@ -21,6 +22,7 @@ export default function NewPlayerPage () {
 }
 
 function NewPlayerForm () {
+    const router = useRouter()
     const [s, setState] = useState({"first_name": "", 
                                     "last_name": "",
                                     "phone": "",
@@ -60,7 +62,38 @@ function NewPlayerForm () {
 
         if (error_text.length == 0) {
             // no problems
-            document.infoform.submit()
+            let form_data = new FormData()
+            let pid
+
+            form_data.append("first_name", s["first_name"])
+            form_data.append("last_name", s["last_name"])
+            form_data.append("phone", s["phone"])
+            form_data.append("player_id", s["player_id"])
+            form_data.append("parent_name", s["parent_name"])
+            form_data.append("mha_id", s["mha_id"])
+            form_data.append("birthdate", s["birthdate"])
+            form_data.append("email", s["email"])
+            form_data.append("mtg_id", s["mtg_id"])
+
+            fetch("http://localhost:8000/gng/new",
+                {
+                    method: "POST",
+                    body: form_data
+                }
+            ).then ( (e) => e.json()
+            ).then ( function (json) {
+                pid = json["pid"]
+
+                // Check in the player to the current event
+                fetch(`http://localhost:8000/gng/checkin?pid=${pid}`, {
+                    method: "GET"
+                }
+                ).then (
+                    (e) => e.json()
+                ).then (
+                    router.push("/checkinsuccess")
+                )
+            })
         }
 
         setState({"first_name": s["first_name"], 
@@ -79,7 +112,7 @@ function NewPlayerForm () {
 
     return (
         <div>
-        <form name="infoform" id="info-form">
+        <form name="infoform" id="info-form" method="POST" action="http://localhost:8000/gng/new">
             <p className="error-text" style={{textAlign: "center"}}>{s["error_text"]}</p>
             <table style={{marginLeft: "10%", marginRight: "20%"}}>
                 <thead>
