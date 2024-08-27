@@ -99,7 +99,7 @@ function NameQueryResults (props) {
 
 function NameQueryRow (props) {
     function check_in (pid) {
-        fetch(`http://localhost:8000/gng/checkin?id=${pid}`)
+        fetch(`http://localhost:8000/gng/checkin?pid=${pid}`)
         .then( (r) => r.status)
         .then( function (status) {
             if (status == 200) {

@@ -8,13 +8,13 @@ if ($_SERVER["REQUEST_METHOD"] !== "GET") {
     exit;
 }
 
-if (!array_key_exists("id", $_GET)) {
+if (!array_key_exists("pid", $_GET)) {
     http_response_code(400);
     echo '[]';
     exit;
 }
 
-$id = $_GET["id"];
+$id = $_GET["pid"];
 
 $sql = $mysqli->prepare("INSERT INTO EventAttendance VALUES (?, CURDATE(), ?)");
 $sql->bind_param("si", $id, $settings["current_event"]);
