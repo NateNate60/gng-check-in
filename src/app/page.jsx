@@ -45,7 +45,7 @@ function NewPlayerButton () {
 
 function ExistingPlayerButton () {
     return (
-        <button style={{float: "inline-start", width: 350}} class="blue-button">
+        <button style={{float: "inline-start", width: 350}} className="blue-button">
             <a href="/existing">
                 <Image
                     src="/existing_user.png"
