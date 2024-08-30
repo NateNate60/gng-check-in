@@ -5,11 +5,33 @@
     "version": "0.2.0",
     "configurations": [
         {
+            "name": "Launch built-in server",
+            "type": "php",
+            "request": "launch",
+            "runtimeArgs": [
+                "-S",
+                "localhost:8000",
+                "-t",
+                "."
+            ],
+            "port": 9003,
+            "serverReadyAction": {
+                "action": "openExternally"
+            }
+        },
+        {
             "type": "firefox",
             "request": "launch",
-            "name": "Launch firefox against localhost",
+            "name": "Firefox",
+            "reAttach": true,
             "url": "http://localhost:3000",
-            "webRoot": "${workspaceFolder}"
+            "webRoot": "${workspaceFolder}",
+            "pathMappings": [
+                {
+                    "url": "webpack://_n_e/src/app",
+                    "path": "${workspaceFolder}/src/app"
+                }
+            ]
         }
     ]
 }
