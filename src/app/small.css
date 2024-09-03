@@ -144,3 +144,7 @@ a {
 .results-cell {
     text-align: center;
 }
+
+.empty-cell {
+    color: grey;
+}

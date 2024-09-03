@@ -5,9 +5,9 @@ import WhiteTextButton from "../components/whitebutton"
 export default function PlayerResultsRow (props) {
 
     function cell (e) {
-        if (e == "") {
+        if (e == "" || e == null) {
             return (
-                <span className="results-cell">
+                <span className="empty-cell">
                     (empty)
                 </span>
             )

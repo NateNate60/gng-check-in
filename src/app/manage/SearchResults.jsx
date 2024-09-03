@@ -1,3 +1,4 @@
+import AttendanceResultRow from "./AttendanceResultRow"
 import PlayerResultsRow from "./PlayerResultsRow"
 
 export default function SearchResults (props) {
@@ -9,9 +10,7 @@ export default function SearchResults (props) {
         )
     }
     if (props.results["type"] == "attendance") {
-        let resultRows = props.results["data"].map( (e) => <tr>
-            <PlayerResultsRow data={e}/>
-        </tr>)
+        let resultRows = props.results["data"].map( (e) => <AttendanceResultRow data={e}/>)
         return (
             <table className="results-list" style={{width: "100%"}}>
                 <thead>
@@ -39,10 +38,11 @@ export default function SearchResults (props) {
                         <th>
                             Event category
                         </th>
+                        <th></th>
                     </tr>
                 </thead>
                 <tbody>
-
+                    {resultRows}
                 </tbody>
             </table>
         )
