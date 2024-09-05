@@ -6,12 +6,25 @@ import GreenTextButton from "../components/greenbutton"
 export default function AddEventControl (props) {
 
     const [state, setState] = useState("")
+    const [warning, setWarning] = useState("")
 
     function add_event () {
-        fetch(`http://localhost:8000/gng/event/new?` + new URLSearchParams()
-            .append("event", state)
+        let formData = new FormData()
+        formData.append("ename", state)
+        fetch(`http://localhost:8000/gng/event/new?`
+        , {
+            method: "POST",
+            body: formData
+        }
         ).then( (e) => e.json()
-        ).then( (json) => props.callback(json))
+        ).then( function (json) {
+            if ("error" in json) {
+                setWarning(json["error"])
+            } else {
+                setWarning("Addition successful. Page will reload...")
+                setTimeout( () => window.location.reload(), 5000)
+            }
+        })
     }
 
     return (
@@ -19,6 +32,9 @@ export default function AddEventControl (props) {
             <h3>
                 Add a new event category
             </h3>
+            <p>
+                {warning}
+            </p>
             <label>Event name</label><br/>
             <input type="text" onChange={(e) => setState(e.target.value)}/>
             <span style={{float: "inline-end"}}>
