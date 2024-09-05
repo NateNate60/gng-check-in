@@ -15,6 +15,17 @@ export default function PlayerResultsRow (props) {
             return e
         }
     }
+
+    function deletePlayer () {
+        let urlParams =  new URLSearchParams()
+        urlParams.append("pid", props.data[0])
+        fetch("http://localhost:8000/gng/player/rm?" + urlParams, {
+            method: "DELETE"
+        }
+        ).then( (r) => r.json()
+        ).then( (json) => console.log(json))
+    }
+
     const resultsRow = props.data.map( (e) => <td className="results-cell">
         {cell(e)}
     </td>)
@@ -23,7 +34,7 @@ export default function PlayerResultsRow (props) {
             {resultsRow}
             <td>
                 <WhiteTextButton text="Edit"/>
-                <DeleteButton onClick={() => {}}/>
+                <DeleteButton onClick={deletePlayer}/>
             </td>
         </tr>
     )
