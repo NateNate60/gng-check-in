@@ -33,7 +33,7 @@ export default function PlayerResultsRow (props) {
         <tr>
             {resultsRow}
             <td>
-                <WhiteTextButton text="Edit"/>
+                <WhiteTextButton text="Edit" href={"/manage/edit?pid=" + props.data[0]} target="_blank"/>
                 <DeleteButton onClick={deletePlayer}/>
             </td>
         </tr>

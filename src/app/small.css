@@ -148,3 +148,8 @@ a {
 .empty-cell {
     color: grey;
 }
+
+.edit-table {
+    width: 60%;
+    margin-left: 30%;
+}
