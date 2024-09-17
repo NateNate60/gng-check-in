@@ -16,7 +16,7 @@ export default function SubtractEventControl (props) {
             return
         }
         let url_params = new URLSearchParams()
-        url_params.append("event", state)
+        url_params.append("eid", state)
         if (warning != "") {
             url_params.append("cascade", "true")
         }
@@ -52,7 +52,7 @@ export default function SubtractEventControl (props) {
                     {warning == "Event has attendance records." ? "Press again to delete the event and all attendance records." : ""}
                 </span>
             </p>
-            <EventSelection events={['1', '-1']} onChange={ on_change }/>
+            <EventSelection events={props.events} onChange={ on_change }/>
 
             <span style={{float: "inline-end"}}>
                 <RedTextButton text={confirm_delete ? "Confirm": "Delete"} onClick={subtract_event}/>

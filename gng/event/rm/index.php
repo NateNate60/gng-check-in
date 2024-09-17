@@ -8,18 +8,18 @@ if ($_SERVER['REQUEST_METHOD'] != 'GET') {
     exit;
 }
 
-if (!array_key_exists("event", $_GET)) {
+if (!array_key_exists("eid", $_GET)) {
     http_response_code(400);
     echo "{}";
     exit;
 }
 
-$event_type = $_GET["event"];
+$eid = $_GET["eid"];
 $cascade = $_GET["cascade"] ?? "false";
 
 if ($cascade == "true") {
     $sql = $mysqli->prepare("DELETE FROM EventAttendance WHERE event_type = ?");
-    $sql->bind_param("i", $event_type);
+    $sql->bind_param("i", $eid);
     try {
         $sql->execute();
     } catch (mysqli_sql_exception $e) {
@@ -30,7 +30,7 @@ if ($cascade == "true") {
 }
 
 $sql = $mysqli->prepare("DELETE FROM Events WHERE event_type = ?");
-$sql->bind_param("i", $event_type);
+$sql->bind_param("i", $eid);
 try {
     $sql->execute();
     echo '{}';
