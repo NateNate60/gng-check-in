@@ -15,27 +15,24 @@ export default function SearchOptions (props) {
     })
 
 
-    function set_filter (event) {
-        setState( previous_state => ({
-            filter: event.target.value,
-            type: previous_state["type"],
-            date: previous_state["date"]
+    function setFilter (event) {
+        setState( previousState => ({
+            ...previousState,
+            filter: event.target.value
         }))
     }
 
-    function set_date (event) {
-        setState( previous_state => ({
-            filter: previous_state["filter"],
-            type: previous_state["type"],
+    function setDate (event) {
+        setState( previousState => ({
+            ...previousState,
             date: event.target.value
         }))
     }
 
-    function set_event (event) {
-        setState( previous_state => ({
-            filter: previous_state["filter"],
-            type: event.target.value,
-            date: previous_state["date"]
+    function setEvent (event) {
+        setState( previousState => ({
+            ...previousState,
+            type: event.target.value
         }))
     }
 
@@ -45,7 +42,7 @@ export default function SearchOptions (props) {
             type: state["type"],
             date: state["date"]
         })).then ( (e) => (e.json())
-        ).then ((json) => props.set_search_results(json)
+        ).then ((json) => props.setSearchResults(json)
         )
     }
 
@@ -55,7 +52,7 @@ export default function SearchOptions (props) {
             <tbody>
                 <tr>
                     <td>
-                        <input type="radio" value="0" name="search_option" onChange={(e) => set_filter(e)}/>
+                        <input type="radio" value="0" name="search_option" onChange={(e) => setFilter(e)}/>
                     </td>
                     <td>
                         Show all players in the database
@@ -63,7 +60,7 @@ export default function SearchOptions (props) {
                 </tr>
                 <tr>
                     <td>
-                        <input type="radio" value="1" name="search_option" onChange={(e) => set_filter(e)}/>
+                        <input type="radio" value="1" name="search_option" onChange={(e) => setFilter(e)}/>
                     </td>
                     <td>
                         Show all attendance records
@@ -71,13 +68,13 @@ export default function SearchOptions (props) {
                 </tr>
                 <tr>
                     <td>
-                        <input type="radio" value="2" name="search_option" onChange={(e) => set_filter(e)}/>
+                        <input type="radio" value="2" name="search_option" onChange={(e) => setFilter(e)}/>
                     </td>
                     <td>
                         Show all attendance records for the event
                     </td>
                     <td>
-                        <EventSelection events={props.events} onChange={(e) => set_event(e)} disable={state["filter"] != 2} />
+                        <EventSelection events={props.events} onChange={(e) => setEvent(e)} disable={state["filter"] != 2} />
                     </td>
                     <td>
                         on any date
@@ -87,13 +84,13 @@ export default function SearchOptions (props) {
                 </tr>
                 <tr>
                     <td>
-                        <input type="radio" value="3" name="search_option" onChange={(e) => set_filter(e)}/>
+                        <input type="radio" value="3" name="search_option" onChange={(e) => setFilter(e)}/>
                     </td>
                     <td>
                         Show all attendance records for the date
                     </td>
                     <td>
-                        <DateSelection onChange={(e) => set_date(e)} disable={state["filter"] != 3} />
+                        <DateSelection onChange={(e) => setDate(e)} disable={state["filter"] != 3} />
                     </td>
                     <td>
                         for all events
@@ -101,30 +98,30 @@ export default function SearchOptions (props) {
                 </tr>
                 <tr>
                     <td>
-                        <input type="radio" value="4" name="search_option" onChange={(e) => set_filter(e)}/>
+                        <input type="radio" value="4" name="search_option" onChange={(e) => setFilter(e)}/>
                     </td>
                     <td>
                         Show attendance records for the event
                     </td>
                     <td>
-                        <EventSelection events={props.events} onChange={(e) => set_event(e)} disable={state["filter"] != 4} />
+                        <EventSelection events={props.events} onChange={(e) => setEvent(e)} disable={state["filter"] != 4} />
                     </td>
                     <td>
                         in the month
                     </td>
                     <td>
-                        <MonthSelection disable={state["filter"] != 4} onChange={(e) => set_date(e)} />
+                        <MonthSelection disable={state["filter"] != 4} onChange={(e) => setDate(e)} />
                     </td>
                 </tr>
                 <tr>
                     <td>
-                        <input type="radio" value="5" name="search_option" onChange={(e) => set_filter(e)}/>
+                        <input type="radio" value="5" name="search_option" onChange={(e) => setFilter(e)}/>
                     </td>
                     <td>
                         Show attendance records for the player with pid
                     </td>
                     <td>
-                        <input type="text" onChange={(e) => set_date(e)}/>
+                        <input type="text" onChange={(e) => setDate(e)}/>
                     </td>
                 </tr>
                 <tr>

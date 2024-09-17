@@ -32,53 +32,53 @@ function NewPlayerForm () {
                                     "birthdate": "",
                                     "email": "",
                                     "mtg_id": "",
-                                    "skip_parent": false})
+                                    "skipParent": false})
 
-    function submit_form () {
-        let error_text = ""
-        let skip_parent
+    function submitForm () {
+        let errorText = ""
+        let skipParent
 
         // Under 13 must provide parent's name. Under 18 are highly encouraged to provide parent's name
         if ((Date.now() - Date.parse(s["birthdate"])) < (1000 * 60 * 60 * 24 * 365.25 * 13) && s["parent_name"].length == 0) {
             //under 13
-            error_text = "You must enter your parent or guardian's name if you are under 13."
+            errorText = "You must enter your parent or guardian's name if you are under 13."
         } else if ((Date.now() - Date.parse(s["birthdate"])) < (1000 * 60 * 60 * 24 * 365.25 * 18) 
                     && s["parent_name"].length == 0 
-                    && ! s["skip_parent"]) {
-            error_text = "Please enter your parent or guardian's name or press submit again to skip."
-            skip_parent = true
+                    && ! s["skipParent"]) {
+            errorText = "Please enter your parent or guardian's name or press submit again to skip."
+            skipParent = true
         }
 
         // Telephone number must match regex (US phone number, 10 digits)
         if (! s["phone"].match(/\d\d\d\d\d\d\d\d\d\d/)) {
-            error_text = "Please enter a US telephone number (10 digits). Enter all zeroes if you do not have one."
+            errorText = "Please enter a US telephone number (10 digits). Enter all zeroes if you do not have one."
         }
 
         if (s["first_name"].length == 0
             || s["last_name"].length == 0
             || s["birthdate"].length == 0) {
-            error_text = "Please enter values for all required fields."
+            errorText = "Please enter values for all required fields."
         }
 
-        if (error_text.length == 0) {
+        if (errorText.length == 0) {
             // no problems
-            let form_data = new FormData()
+            let formData = new FormData()
             let pid
 
-            form_data.append("first_name", s["first_name"])
-            form_data.append("last_name", s["last_name"])
-            form_data.append("phone", s["phone"])
-            form_data.append("player_id", s["player_id"])
-            form_data.append("parent_name", s["parent_name"])
-            form_data.append("mha_id", s["mha_id"])
-            form_data.append("birthdate", s["birthdate"])
-            form_data.append("email", s["email"])
-            form_data.append("mtg_id", s["mtg_id"])
+            formData.append("first_name", s["first_name"])
+            formData.append("last_name", s["last_name"])
+            formData.append("phone", s["phone"])
+            formData.append("player_id", s["player_id"])
+            formData.append("parent_name", s["parent_name"])
+            formData.append("mha_id", s["mha_id"])
+            formData.append("birthdate", s["birthdate"])
+            formData.append("email", s["email"])
+            formData.append("mtg_id", s["mtg_id"])
 
             fetch("http://localhost:8000/gng/new",
                 {
                     method: "POST",
-                    body: form_data
+                    body: formData
                 }
             ).then ( (e) => e.json()
             ).then ( function (json) {
@@ -105,15 +105,15 @@ function NewPlayerForm () {
             "birthdate": s["birthdate"],
             "email": s["email"],
             "mtg_id": s["mtg_id"],
-            "error_text": error_text,
-            "skip_parent": skip_parent})
+            "errorText": errorText,
+            "skipParent": skipParent})
 
     }
 
     return (
         <div>
         <form name="infoform" id="info-form" method="POST" action="http://localhost:8000/gng/new">
-            <p className="error-text" style={{textAlign: "center"}}>{s["error_text"]}</p>
+            <p className="error-text" style={{textAlign: "center"}}>{s["errorText"]}</p>
             <table style={{marginLeft: "10%", marginRight: "20%"}}>
                 <thead>
                     <tr style={{width: "50%"}}></tr>
@@ -255,7 +255,7 @@ function NewPlayerForm () {
             </table>
         </form>
         <div className="centre-align">
-            <GreenTextButton text="Submit" onClick={submit_form} float="center"/>
+            <GreenTextButton text="Submit" onClick={submitForm} float="center"/>
         </div>
         </div>
     )

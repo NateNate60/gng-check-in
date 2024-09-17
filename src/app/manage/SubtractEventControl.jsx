@@ -8,19 +8,19 @@ export default function SubtractEventControl (props) {
 
     const [state, setState] = useState("")
     const [warning, setWarning] = useState("")
-    const [confirm_delete, setConfirm] = useState(false)
+    const [confirmDelete, setConfirm] = useState(false)
 
-    function subtract_event () {
-        if (!confirm_delete) {
+    function subtractEvent () {
+        if (!confirmDelete) {
             setConfirm(true)
             return
         }
-        let url_params = new URLSearchParams()
-        url_params.append("eid", state)
+        let urlParams = new URLSearchParams()
+        urlParams.append("eid", state)
         if (warning != "") {
-            url_params.append("cascade", "true")
+            urlParams.append("cascade", "true")
         }
-        fetch(`http://localhost:8000/gng/event/rm?` + url_params
+        fetch(`http://localhost:8000/gng/event/rm?` + urlParams
         ).then( (e) => e.json()
         ).then( function (json) {
             if ("error" in json) {
@@ -33,7 +33,7 @@ export default function SubtractEventControl (props) {
         
     }
 
-    function on_change (event) {
+    function onChange (event) {
         setConfirm(false)
         setWarning("")
         setState(event.target.value)
@@ -52,10 +52,10 @@ export default function SubtractEventControl (props) {
                     {warning == "Event has attendance records." ? "Press again to delete the event and all attendance records." : ""}
                 </span>
             </p>
-            <EventSelection events={props.events} onChange={ on_change }/>
+            <EventSelection events={props.events} onChange={ onChange }/>
 
             <span style={{float: "inline-end"}}>
-                <RedTextButton text={confirm_delete ? "Confirm": "Delete"} onClick={subtract_event}/>
+                <RedTextButton text={confirmDelete ? "Confirm": "Delete"} onClick={subtractEvent}/>
             </span>
         </div>
     )

@@ -9,7 +9,7 @@ import WhiteTextButton from "../components/whitebutton"
 
 export default function NewPlayerPage () {
 
-    const [search_results, set_search_results] = useState([])
+    const [searchResults, setSearchResults] = useState([])
 
     return (
         <div >
@@ -20,8 +20,8 @@ export default function NewPlayerPage () {
             </div>
             
             <div className="centre-align">
-                <SearchBar onChange={ (e) => set_search_results(e) }/>
-                <NameQueryResults results={search_results}/>
+                <SearchBar onChange={ (e) => setSearchResults(e) }/>
+                <NameQueryResults results={searchResults}/>
             </div>
             
         </div>
@@ -98,7 +98,7 @@ function NameQueryResults (props) {
 }
 
 function NameQueryRow (props) {
-    function check_in (pid) {
+    function checkIn (pid) {
         fetch(`http://localhost:8000/gng/checkin?pid=${pid}`)
         .then( (r) => r.status)
         .then( function (status) {
@@ -122,7 +122,7 @@ function NameQueryRow (props) {
                 XXX-XXX-{props.entry["phone_last4"]}
             </td>
             <td>
-                <WhiteTextButton onClick={() => check_in(props.entry["pid"])} text="Select"/>
+                <WhiteTextButton onClick={() => checkIn(props.entry["pid"])} text="Select"/>
             </td>
         </tr>
     )

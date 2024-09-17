@@ -2,10 +2,16 @@ import EventSelection from "../components/EventSelection"
 import WhiteTextButton from "../components/whitebutton"
 
 // Component that renders the dialogue to change the current active event
-export default function CurrentEventControl () {
+export default function CurrentEventControl (props) {
 
-    function change_event () {
-
+    function changeEvent (eid) {
+        let urlParams = new URLSearchParams()
+        urlParams.append("eid", eid)
+        fetch("http://localhost:8000/gng/event/change?" + urlParams,
+            {
+                method: "PATCH"
+            }
+        )
     }
 
     return (
@@ -17,11 +23,11 @@ export default function CurrentEventControl () {
                 The current event determines which event players are checked in to.
             </p>
             <span style={{float: "inline-start"}}>
-                <EventSelection events={['1']} onChange={ (e) => setState(e.target.value) }/>
+                <EventSelection events={props.events} onChange={ (e) => changeEvent(e.target.value) }/>
             </span>
-            <span style={{float: "inline-end"}}>
-                <WhiteTextButton text="Change" onClick={change_event}/>
-            </span>
+            <p className="right-align">
+                (saves automatically)
+            </p>
         </div>
     )
 }

@@ -8,7 +8,7 @@ export default function AddEventControl (props) {
     const [state, setState] = useState("")
     const [warning, setWarning] = useState("")
 
-    function add_event () {
+    function addEvent () {
         let formData = new FormData()
         formData.append("ename", state)
         fetch(`http://localhost:8000/gng/event/new?`
@@ -38,7 +38,7 @@ export default function AddEventControl (props) {
             <label>Event name</label><br/>
             <input type="text" onChange={(e) => setState(e.target.value)}/>
             <span style={{float: "inline-end"}}>
-                <GreenTextButton text="Add" onClick={add_event}/>
+                <GreenTextButton text="Add" onClick={addEvent}/>
             </span>
         </div>
         

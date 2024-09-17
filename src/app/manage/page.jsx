@@ -9,7 +9,7 @@ import SearchOptions from "./SearchOptions"
 import EventControl from "./EventControl"
 
 export default function ManagementPage () {
-    const [search_results, set_search_results] = useState("")
+    const [searchResults, setSearchResults] = useState("")
     const [events, setEvents] = useState(["Loading..."])
 
     useEffect( function () {
@@ -26,10 +26,10 @@ export default function ManagementPage () {
                 <BackButton />
             </div>
             <div>
-                <SearchOptions set_search_results={set_search_results} events={events}/>
+                <SearchOptions setSearchResults={setSearchResults} events={events}/>
                 <EventControl events={events}/>
             </div>
-            <SearchResults results={search_results}/>
+            <SearchResults results={searchResults}/>
             
         </div>
     )
