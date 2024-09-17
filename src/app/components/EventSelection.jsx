@@ -22,18 +22,17 @@ export default function EventSelection (props) {
             {e[0]}: {e[1]}
     </option>)
     
-    if (!props.disable) {
-        return (
-            <select onChange={props.onChange}>
+    return (
+        <select 
+            onChange={function (e) {
+                setCurrentEvent(e.target.value)
+                props.onChange(e)
+            }}
+            disabled={props.disable}
+            value={props.value ?? currentEvent}>
                 {eventList}
-            </select>
-        )
-    } else {
-        return (
-            <select disabled>
-                {eventList}
-            </select>
-        )
-    }
+        </select>
+    )
+
     
 }

@@ -74,7 +74,7 @@ export default function SearchOptions (props) {
                         Show all attendance records for the event
                     </td>
                     <td>
-                        <EventSelection events={props.events} onChange={(e) => setEvent(e)} disable={state["filter"] != 2} />
+                        <EventSelection events={props.events} onChange={(e) => setEvent(e)} disable={state["filter"] != 2} value={state["type"]}/>
                     </td>
                     <td>
                         on any date
@@ -104,7 +104,7 @@ export default function SearchOptions (props) {
                         Show attendance records for the event
                     </td>
                     <td>
-                        <EventSelection events={props.events} onChange={(e) => setEvent(e)} disable={state["filter"] != 4} />
+                        <EventSelection events={props.events} onChange={(e) => setEvent(e)} disable={state["filter"] != 4} value={state["type"]}/>
                     </td>
                     <td>
                         in the month
