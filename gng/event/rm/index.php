@@ -17,6 +17,12 @@ if (!array_key_exists("eid", $_GET)) {
 $eid = $_GET["eid"];
 $cascade = $_GET["cascade"] ?? "false";
 
+if ($eid == $settings["current_event"]) {
+    http_response_code(400);
+    echo '{"error": "Cannot delete the current active event. Change the current event before deleting it."}';
+    exit;
+}
+
 if ($cascade == "true") {
     $sql = $mysqli->prepare("DELETE FROM EventAttendance WHERE event_type = ?");
     $sql->bind_param("i", $eid);
