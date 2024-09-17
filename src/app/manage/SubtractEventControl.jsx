@@ -54,7 +54,7 @@ export default function SubtractEventControl (props) {
             </p>
             <EventSelection events={props.events} onChange={ onChange }/>
 
-            <span style={{float: "inline-end"}}>
+            <span className="event-control-button">
                 <RedTextButton text={confirmDelete ? "Confirm": "Delete"} onClick={subtractEvent}/>
             </span>
         </div>

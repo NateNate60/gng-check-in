@@ -37,7 +37,7 @@ export default function AddEventControl (props) {
             </p>
             <label>Event name</label><br/>
             <input type="text" onChange={(e) => setState(e.target.value)}/>
-            <span style={{float: "inline-end"}}>
+            <span className="event-control-button">
                 <GreenTextButton text="Add" onClick={addEvent}/>
             </span>
         </div>

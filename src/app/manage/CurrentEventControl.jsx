@@ -22,7 +22,8 @@ export default function CurrentEventControl (props) {
             <p>
                 The current event determines which event players are checked in to.
             </p>
-            <span style={{float: "inline-start"}}>
+            <span id="current-event-selector">
+                {/* Also doesn't work when moved to CSS stylesheet */}
                 <EventSelection events={props.events} onChange={ (e) => changeEvent(e.target.value) }/>
             </span>
             <p className="right-align">

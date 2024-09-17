@@ -1,0 +1,17 @@
+#logo {
+    padding: 2%
+}
+
+#home-row {
+    display: flex;
+    justify-content: center;
+}
+
+.image200 {
+    width: 200px;
+    height: 200px;
+}
+
+#home-button {
+    width: 350;
+}

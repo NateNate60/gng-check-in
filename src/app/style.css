@@ -20,15 +20,12 @@ a {
 
 }
 
-.right-align {
-    float: right;
+.centre-align {
+    text-align: center;
 }
 
-.centre-align {
-    margin-left: auto;
-    margin-right: auto;
-    width: 50%;
-    display: block;
+.right-align {
+    float: right;
 }
 
 .green-button {
@@ -110,23 +107,14 @@ a {
     background-color: rgb(119, 0, 0);
 }
 
-.image200 {
-    width: 200px;
-    height: 200px;
-}
-
 .page-title {
     text-align: center;
     font-size: 250%;
 }
 
-td {
-    text-align: left;
-}
-
-.results-list {
-    padding: 1%;
-    text-align: center;
+.no-edge {
+    margin-left: 10%;
+    margin-right: 10%;
 }
 
 .error-text {

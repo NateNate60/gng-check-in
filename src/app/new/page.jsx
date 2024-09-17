@@ -3,6 +3,7 @@ import { useState } from "react"
 import { useRouter } from "next/navigation"
 
 import "../style.css"
+import "./new.css"
 import BackButton from "../components/backbutton.jsx"
 import BlueTextButton from "../components/bluebuttton.jsx"
 import GreenTextButton from "../components/greenbutton.jsx"
@@ -10,11 +11,11 @@ import GreenTextButton from "../components/greenbutton.jsx"
 export default function NewPlayerPage () {
     return (
         <div >
-            <div className="centre-align" style={{width: "80%"}}>
+            <div className="no-edge">
                 <h1 className="page-title">Add new profile</h1>
                 <BackButton/>
                 <BlueTextButton text="I already have a profile" float="right" href="/existing"/>
-                <p style={{textAlign: "center"}}>Please enter your information below.</p>
+                <p className="centre-align">Please enter your information below.</p>
             </div>
             <NewPlayerForm />
         </div>
@@ -113,15 +114,15 @@ function NewPlayerForm () {
     return (
         <div>
         <form name="infoform" id="info-form" method="POST" action="http://localhost:8000/gng/new">
-            <p className="error-text" style={{textAlign: "center"}}>{s["errorText"]}</p>
-            <table style={{marginLeft: "10%", marginRight: "20%"}}>
+            <p className="error-text centre-align">{s["errorText"]}</p>
+            <table className="no-edge">
                 <thead>
-                    <tr style={{width: "50%"}}></tr>
-                    <tr style={{width: "50%"}}></tr>
+                    <tr></tr>
+                    <tr></tr>
                 </thead>
                 <tbody>
                     <tr>
-                        <td style={{width: "50%"}}> 
+                        <td> 
                             <label>★ Given name</label>
                             <input type="text" name="first_name" required onChange={(e) => setState({"first_name": e.target.value, 
                                                                                                      "last_name": s["last_name"],
@@ -133,7 +134,7 @@ function NewPlayerForm () {
                                                                                                      "email": s["email"],
                                                                                                      "mtg_id": s["mtg_id"]})}/>
                         </td>
-                        <td style={{width: "50%"}}>
+                        <td>
                             <label>★ Surname</label>
                             <input type="text" name="last_name" required onChange={(e) => setState({"first_name": s["first_name"], 
                                                                                                     "last_name": e.target.value,
@@ -244,8 +245,8 @@ function NewPlayerForm () {
                             <p>★ Required</p>
                             
                         </td>
-                        <td style={{paddingLeft: "1%", paddingRight: "2%", paddingBottom: "2%"}}>
-                            <p style={{textAlign: "left"}}>
+                        <td>
+                            <p>
                                 Your information will be collected for the purpose of reporting attendance data as required by TCG publishers
                                 and for internal record-keeping purposes. It will not be shared with or sold to anyone else.
                             </p>

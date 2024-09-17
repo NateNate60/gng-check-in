@@ -1,0 +1,29 @@
+#event-control {
+    display: inline-block;
+    width: 30%;
+    padding-right: 5%;
+}
+
+#search-options {
+    width: 60%;
+    text-align: left;
+    display: inline-block;
+}
+
+#results-list {
+    padding: 1%;
+    text-align: center;
+    width: 100%;
+}
+
+#row-count {
+    text-align: left;
+}
+
+#current-event-selector {
+    float: inline-start;
+}
+
+.event-control-button {
+    float: inline-end;
+}

@@ -1,0 +1,33 @@
+#query {
+    width: 40%;
+    font-size: 200%;
+}
+
+.given-name {
+    width: 10%;
+}
+
+.surname {
+    width: 10%;
+}
+
+.phone {
+    width: 10%;
+}
+
+.select-button {
+    width: 5%;
+}
+
+table {
+    margin-right: auto;
+    margin-left: auto;
+    width: 60%;
+    display: block;
+    justify-content: center;
+}
+
+td {
+    text-align: center;
+    padding-bottom: 1%;
+}

@@ -47,7 +47,7 @@ export default function SearchOptions (props) {
     }
 
     return (
-        <form style={{width: "60%", textAlign: "left", display: "inline-block"}}>
+        <form id="search-options">
         <table >
             <tbody>
                 <tr>

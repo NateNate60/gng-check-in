@@ -2,6 +2,7 @@
 import { useState } from "react"
 
 import "../style.css"
+import "./existing_player.css"
 import BackButton from "../components/backbutton.jsx"
 import BlueTextButton from "../components/bluebuttton.jsx"
 import GreenTextButton from "../components/greenbutton.jsx"
@@ -13,13 +14,13 @@ export default function NewPlayerPage () {
 
     return (
         <div >
-            <div style={{marginLeft: "10%", marginRight: "10%"}}>
+            <div className="no-edge">
                 <h1 className="page-title">Search for an existing profile</h1>
                 <BackButton/>
                 <GreenTextButton href="/new" text="My name isn't here" float="right"/>
             </div>
             
-            <div className="centre-align">
+            <div className="no-edge">
                 <SearchBar onChange={ (e) => setSearchResults(e) }/>
                 <NameQueryResults results={searchResults}/>
             </div>
@@ -42,7 +43,7 @@ function SearchBar (props) {
         <div className="centre-align">
             <form id="search-bar">
                 <p>Begin typing your name in the box below, then press the button next to your name to check in.</p>
-                <input type="text" id="query" name="query" onChange={ (e) => search(e.target.value) } style={{width: "100%", fontSize:"200%"}}/>
+                <input type="text" id="query" name="query" onChange={ (e) => search(e.target.value) }/>
             </form>
         </div>
         
@@ -72,19 +73,19 @@ function NameQueryResults (props) {
     let rows = results.map( (row) => <NameQueryRow entry={row} key={row["pid"]}/>)
 
     return (
-        <table className="centre-align results-list" style={{width: "100%", justifyContent: "center"}}>
+        <table className="centre-align">
             <thead >
                 <tr>
-                    <th style={{width: "40vh"}}>
+                    <th className="given-name centre-align">
                         Given name
                     </th>
-                    <th style={{width: "40vh"}}>
+                    <th className="surname centre-align">
                         Surname
                     </th>
-                    <th style={{width: "40vh"}}>
+                    <th className="phone centre-align">
                         Phone number
                     </th>
-                    <th style={{width: "15vh"}}>
+                    <th className="select-button centre-align">
 
                     </th>
                 </tr>
@@ -112,16 +113,16 @@ function NameQueryRow (props) {
 
     return (
         <tr>
-            <td className="results-list"> 
+            <td className="given-name"> 
                 {props.entry["first_name"]}
             </td>
-            <td className="results-list">
+            <td className="surname">
                 {props.entry["last_name"]}
             </td>
-            <td className="results-list">
+            <td className="phone">
                 XXX-XXX-{props.entry["phone_last4"]}
             </td>
-            <td>
+            <td className="select-button">
                 <WhiteTextButton onClick={() => checkIn(props.entry["pid"])} text="Select"/>
             </td>
         </tr>

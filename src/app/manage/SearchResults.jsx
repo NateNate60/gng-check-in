@@ -12,13 +12,13 @@ export default function SearchResults (props) {
     if (props.results["type"] == "attendance") {
         let resultRows = props.results["data"].map( (e) => <AttendanceResultRow data={e}/>)
         return (
-            <table className="results-list" style={{width: "100%"}}>
+            <table id="results-list">
                 <thead>
                     <tr>
                         <th>
                             Result count:
                         </th>
-                        <td>
+                        <td id="row-count">
                             {props.results["data"].length}
                         </td>
                     </tr>
@@ -49,13 +49,13 @@ export default function SearchResults (props) {
     } else {
         let resultRows = props.results["data"].map( (e) => <PlayerResultsRow data={e}/>)
         return (
-            <table className="results-table" style={{width: "100%"}}>
+            <table id="results-list">
                 <thead>
                     <tr>
                         <th>
                             Result count:
                         </th>
-                        <td style={{textAlign: "center"}}>
+                        <td id="row-count">
                             {props.results["data"].length}
                         </td>
                     </tr>

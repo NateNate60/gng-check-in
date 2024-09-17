@@ -1,11 +1,12 @@
 import './style.css'
+import "./home.css"
 import Image from "next/image"
 
 export default function Home () {
     return (
-        <div style={{marginLeft: "auto", marginRight: "auto"}}>
+        <div>
             <h1 className="page-title">CHECK IN HERE</h1>
-            <div style={{display: "flex", justifyContent: "center"}} >
+            <div id='home-row' >
                 <NewPlayerButton />
                 <Logo />
                 <ExistingPlayerButton />
@@ -16,7 +17,7 @@ export default function Home () {
 
 function Logo () {
     return (
-        <div style={{padding: 50}}>
+        <div id='logo'>
         <Image 
             src="/gnglogo.png"
             width={200}
@@ -29,7 +30,8 @@ function Logo () {
 
 function NewPlayerButton () {
     return (
-        <button style={{float: "inline-end", width: 350}} className="green-button">
+        <button style={{width: 350}} className="green-button">
+            {/* No amount of CSS fuckery will let this work, only inline style works :( */}
             <a href="/new">
                 <Image
                     src="/new_user.png"
@@ -37,15 +39,16 @@ function NewPlayerButton () {
                     height="250"
                 />
                 <br/>
-                <h1 style={{color: "black"}}>I'm a new player</h1>
             </a>
+            <h1>I'm a new player</h1>
         </button>
     )
 }
 
 function ExistingPlayerButton () {
     return (
-        <button style={{float: "inline-start", width: 350}} className="blue-button">
+        <button style={{width: 350}} className="blue-button">
+            {/* No amount of CSS fuckery will let this work, only inline style works :( */}
             <a href="/existing">
                 <Image
                     src="/existing_user.png"
@@ -53,8 +56,9 @@ function ExistingPlayerButton () {
                     height="250"
                 />
                 <br/>
-                <h1 style={{color: "black"}}>I've been here before</h1>
+                
             </a>
+            <h1>I've been here before</h1>
         </button>
     )
 }
