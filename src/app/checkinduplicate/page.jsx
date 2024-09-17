@@ -21,7 +21,7 @@ export default function CheckInSuccess () {
                 You've already checked in previously to this event so you don't need to check in again.
             </p>
             <p>
-                This screen will automatically advance in 10 seconds.
+                This screen will automatically advance in 5 seconds.
             </p>
             <WhiteTextButton href="/existing" text="Check another player in"/>
         </div>
