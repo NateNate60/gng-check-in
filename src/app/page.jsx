@@ -49,7 +49,7 @@ function ExistingPlayerButton () {
     return (
         <button style={{width: 350}} className="blue-button">
             {/* No amount of CSS fuckery will let this work, only inline style works :( */}
-            <a href="/existing">
+            <a href="/checkin">
                 <Image
                     src="/existing_user.png"
                     width="300"
