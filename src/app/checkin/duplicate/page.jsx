@@ -1,8 +1,8 @@
 "use client"
 
 import { useRouter } from "next/navigation"
-import WhiteTextButton from "../components/whitebutton"
-import "../style.css"
+import WhiteTextButton from "../../components/whitebutton"
+import "../../style.css"
 
 export default function CheckInSuccess () {
 
