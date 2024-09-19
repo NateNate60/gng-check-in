@@ -2,11 +2,11 @@
 import { useState } from "react"
 import { useRouter } from "next/navigation"
 
-import "../style.css"
+import "../../style.css"
 import "./new.css"
-import BackButton from "../components/backbutton.jsx"
-import BlueTextButton from "../components/bluebuttton.jsx"
-import GreenTextButton from "../components/greenbutton.jsx"
+import BackButton from "../../components/backbutton.jsx"
+import BlueTextButton from "../../components/bluebuttton.jsx"
+import GreenTextButton from "../../components/greenbutton.jsx"
 
 export default function NewPlayerPage () {
     return (
@@ -14,7 +14,7 @@ export default function NewPlayerPage () {
             <div className="no-edge">
                 <h1 className="page-title">Add new profile</h1>
                 <BackButton/>
-                <BlueTextButton text="I already have a profile" float="right" href="/existing"/>
+                <BlueTextButton text="I already have a profile" float="right" href="/checkin"/>
                 <p className="centre-align">Please enter your information below.</p>
             </div>
             <NewPlayerForm />
@@ -92,7 +92,7 @@ function NewPlayerForm () {
                 ).then (
                     (e) => e.json()
                 ).then (
-                    router.push("/checkinsuccess")
+                    router.push("/checkin/success")
                 )
             })
         }

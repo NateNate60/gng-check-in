@@ -6,7 +6,7 @@ import "./existing_player.css"
 import BackButton from "../components/backbutton.jsx"
 import BlueTextButton from "../components/bluebuttton.jsx"
 import GreenTextButton from "../components/greenbutton.jsx"
-import WhiteTextButton from "../components/whitebutton"
+import WhiteTextButton from "../components/whitebutton.jsx"
 
 export default function NewPlayerPage () {
 
@@ -17,7 +17,7 @@ export default function NewPlayerPage () {
             <div className="no-edge">
                 <h1 className="page-title">Search for an existing profile</h1>
                 <BackButton/>
-                <GreenTextButton href="/new" text="My name isn't here" float="right"/>
+                <GreenTextButton href="/checkin/new" text="My name isn't here" float="right"/>
             </div>
             
             <div className="no-edge">
@@ -104,9 +104,9 @@ function NameQueryRow (props) {
         .then( (r) => r.status)
         .then( function (status) {
             if (status == 200) {
-                window.location.href = "/checkinsuccess"
+                window.location.href = "/checkin/success"
             } else {
-                window.location.href = "/checkinduplicate"
+                window.location.href = "/checkin/duplicate"
             }
         })
     }

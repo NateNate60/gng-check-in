@@ -32,7 +32,7 @@ function NewPlayerButton () {
     return (
         <button style={{width: 350}} className="green-button">
             {/* No amount of CSS fuckery will let this work, only inline style works :( */}
-            <a href="/new">
+            <a href="/checkin/new">
                 <Image
                     src="/new_user.png"
                     width="250"
