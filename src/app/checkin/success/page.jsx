@@ -23,7 +23,7 @@ export default function CheckInSuccess () {
             <p>
                 This screen will automatically advance in 5 seconds.
             </p>
-            <WhiteTextButton href="/existing" text="Check another player in"/>
+            <WhiteTextButton href="/checkin" text="Check another player in"/>
         </div>
     )
 }
