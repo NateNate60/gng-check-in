@@ -6,6 +6,7 @@ import MonthSelection from "../components/MonthSelection"
 import DateSelection from "../components/DateSelection"
 import EventSelection from "../components/EventSelection"
 
+const config = require("@/config.json")
 
 export default function SearchOptions (props) {
     const [state, setState] = useState({
@@ -37,7 +38,7 @@ export default function SearchOptions (props) {
     }
 
     function search () {
-        fetch("http://localhost:8000/gng/event/search?" + new URLSearchParams({
+        fetch(`http://${config['domain']}/event/search?` + new URLSearchParams({
             filter: state["filter"],
             type: state["type"],
             date: state["date"]

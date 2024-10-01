@@ -7,6 +7,8 @@ import "../../small.css"
 import WhiteTextButton from "@/app/components/whitebutton"
 import RedTextButton from "@/app/components/redbutton"
 
+const config = require("@/config.json")
+
 export default function EditPage () {
     const [playerData, setPlayerData] = useState({})
     const [isClient, setIsClient] = useState(false)
@@ -17,7 +19,7 @@ export default function EditPage () {
         console.log("Fetching data")
         let urlParams = new URLSearchParams()
         urlParams.append("pid", pid)
-        fetch("http://localhost:8000/gng/player?" + urlParams
+        fetch(`http://${config['domain']}/player?` + urlParams
         ).then( (r) => r.json()
         ).then( function (json) {
             let returnObject = {}
@@ -185,7 +187,7 @@ function InformationForm (props) {
                             Object.keys(playerData).forEach(key => {
                                 formData.append(key, playerData[key])
                             });
-                            fetch("http://localhost:8000/gng/player/edit",
+                            fetch(`http://${config['domain']}/player/edit`,
                                 {
                                     body: formData,
                                     method: "POST"
@@ -202,7 +204,7 @@ function InformationForm (props) {
                             setSaveStatus("")
                             let urlParams = new URLSearchParams()
                             urlParams.append("pid", playerData["pid"])
-                            fetch("http://localhost:8000/gng/player?" + urlParams
+                            fetch(`http://${config['domain']}/player?` + urlParams
                             ).then( (r) => r.json()
                             ).then( function (json) {
                                 let returnObject = {}

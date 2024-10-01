@@ -3,6 +3,8 @@ import { useState } from "react"
 import EventSelection from "../components/EventSelection"
 import RedTextButton from "../components/redbutton"
 
+const config = require("@/config.json")
+
 // Component that renders the dialogue to delete an event
 export default function SubtractEventControl (props) {
 
@@ -20,7 +22,7 @@ export default function SubtractEventControl (props) {
         if (warning != "") {
             urlParams.append("cascade", "true")
         }
-        fetch(`http://localhost:8000/gng/event/rm?` + urlParams
+        fetch(`http://${config['domain']}/event/rm?` + urlParams
         ).then( (e) => e.json()
         ).then( function (json) {
             if ("error" in json) {

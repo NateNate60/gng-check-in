@@ -2,6 +2,8 @@ import { useState } from "react"
 
 import GreenTextButton from "../components/greenbutton"
 
+const config = require("@/config.json")
+
 // Component that renders the dialogue to add a new event
 export default function AddEventControl (props) {
 
@@ -11,7 +13,7 @@ export default function AddEventControl (props) {
     function addEvent () {
         let formData = new FormData()
         formData.append("ename", state)
-        fetch(`http://localhost:8000/gng/event/new?`
+        fetch(`http://${config["domain"]}/event/new?`
         , {
             method: "POST",
             body: formData

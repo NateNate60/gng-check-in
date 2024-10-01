@@ -1,13 +1,15 @@
 import EventSelection from "../components/EventSelection"
 import WhiteTextButton from "../components/whitebutton"
 
+const config = require("@/config.json")
+
 // Component that renders the dialogue to change the current active event
 export default function CurrentEventControl (props) {
 
     function changeEvent (eid) {
         let urlParams = new URLSearchParams()
         urlParams.append("eid", eid)
-        fetch("http://localhost:8000/gng/event/change?" + urlParams,
+        fetch(`http://${config["domain"]}/event/change?` + urlParams,
             {
                 method: "PATCH"
             }

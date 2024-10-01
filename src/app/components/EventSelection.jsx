@@ -1,6 +1,8 @@
 "use client"
 import { useEffect, useState } from "react"
 
+const config = require("@/config.json")
+
 export default function EventSelection (props) {
     if (!"events" in props) {
         return
@@ -9,7 +11,7 @@ export default function EventSelection (props) {
     const [currentEvent, setCurrentEvent] = useState(null)
 
     useEffect( function () {
-        fetch("http://localhost:8000/gng/event/current"
+        fetch(`http://${config["domain"]}/event/current`
         ).then( (r) => r.json()
         ).then( (json) => setCurrentEvent(json["current_event"]))
     }, [])

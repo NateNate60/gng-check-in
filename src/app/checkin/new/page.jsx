@@ -8,6 +8,8 @@ import BackButton from "../../components/backbutton.jsx"
 import BlueTextButton from "../../components/bluebuttton.jsx"
 import GreenTextButton from "../../components/greenbutton.jsx"
 
+const config = require("@/config.json")
+
 export default function NewPlayerPage () {
     return (
         <div >
@@ -76,7 +78,7 @@ function NewPlayerForm () {
             formData.append("email", s["email"])
             formData.append("mtg_id", s["mtg_id"])
 
-            fetch("http://localhost:8000/gng/new",
+            fetch(`http://${config["domain"]}/new`,
                 {
                     method: "POST",
                     body: formData
@@ -86,7 +88,7 @@ function NewPlayerForm () {
                 pid = json["pid"]
 
                 // Check in the player to the current event
-                fetch(`http://localhost:8000/gng/checkin?pid=${pid}`, {
+                fetch(`http://${config["domain"]}/checkin?pid=${pid}`, {
                     method: "GET"
                 }
                 ).then (
@@ -113,7 +115,7 @@ function NewPlayerForm () {
 
     return (
         <div>
-        <form name="infoform" id="info-form" method="POST" action="http://localhost:8000/gng/new">
+        <form name="infoform" id="info-form" method="POST" action={`http://${config["domain"]}/new`}>
             <p className="error-text centre-align">{s["errorText"]}</p>
             <table className="no-edge">
                 <thead>

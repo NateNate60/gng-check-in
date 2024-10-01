@@ -8,12 +8,14 @@ import SearchResults from "./SearchResults"
 import SearchOptions from "./SearchOptions"
 import EventControl from "./EventControl"
 
+const config = require("@/config.json")
+
 export default function ManagementPage () {
     const [searchResults, setSearchResults] = useState("")
     const [events, setEvents] = useState(["Loading..."])
 
     useEffect( function () {
-        fetch("http://localhost:8000/gng/event"
+        fetch(`http://${config['domain']}/event`
         ).then( (r) => r.json()
         ).then( (json) => setEvents(json))
     }, [])

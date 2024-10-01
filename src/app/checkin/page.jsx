@@ -8,6 +8,8 @@ import BlueTextButton from "../components/bluebuttton.jsx"
 import GreenTextButton from "../components/greenbutton.jsx"
 import WhiteTextButton from "../components/whitebutton.jsx"
 
+const config = require("@/config.json")
+
 export default function NewPlayerPage () {
 
     const [searchResults, setSearchResults] = useState([])
@@ -32,7 +34,7 @@ export default function NewPlayerPage () {
 function SearchBar (props) {
     
     function search (query) {
-        fetch(`http://localhost:8000/gng/search?query=${query}`,)
+        fetch(`http://${config["domain"]}/search?query=${query}`,)
         .then( (x) => x.json())
         .then( (json) => props.onChange(json))
         .catch( (e) => console.log(e) )
@@ -100,7 +102,7 @@ function NameQueryResults (props) {
 
 function NameQueryRow (props) {
     function checkIn (pid) {
-        fetch(`http://localhost:8000/gng/checkin?pid=${pid}`)
+        fetch(`http://${config["domain"]}/checkin?pid=${pid}`)
         .then( (r) => r.status)
         .then( function (status) {
             if (status == 200) {

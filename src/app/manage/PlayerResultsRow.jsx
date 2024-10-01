@@ -2,6 +2,8 @@ import DeleteButton from "../components/DeleteButton"
 import RedTextButton from "../components/redbutton"
 import WhiteTextButton from "../components/whitebutton"
 
+const config = require("@/config.json")
+
 export default function PlayerResultsRow (props) {
 
     function cell (e) {
@@ -19,7 +21,7 @@ export default function PlayerResultsRow (props) {
     function deletePlayer () {
         let urlParams =  new URLSearchParams()
         urlParams.append("pid", props.data[0])
-        fetch("http://localhost:8000/gng/player/rm?" + urlParams, {
+        fetch(`http://${config['domain']}/player/rm?` + urlParams, {
             method: "DELETE"
         }
         ).then( (r) => r.json()
