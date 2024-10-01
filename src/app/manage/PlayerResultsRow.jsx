@@ -28,7 +28,7 @@ export default function PlayerResultsRow (props) {
         ).then( (json) => console.log(json))
     }
 
-    const resultsRow = props.data.map( (e) => <td className="results-cell">
+    const resultsRow = props.data.map( (e) => <td key={`${props.data[0]}:${e}`} className="results-cell">
         {cell(e)}
     </td>)
     return (

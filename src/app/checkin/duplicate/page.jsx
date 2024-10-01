@@ -18,7 +18,7 @@ export default function CheckInSuccess () {
                 You are already checked in
             </h1>
             <p>
-                You've already checked in previously to this event so you don't need to check in again.
+                You&apos;ve already checked in previously to this event so you don&apos;t need to check in again.
             </p>
             <p>
                 This screen will automatically advance in 5 seconds.

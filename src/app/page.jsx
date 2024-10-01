@@ -22,6 +22,7 @@ function Logo () {
             src="/gnglogo.png"
             width={200}
             height={200}
+            alt="Geeks & Games logo"
         />
         </div>
         
@@ -37,10 +38,11 @@ function NewPlayerButton () {
                     src="/new_user.png"
                     width="250"
                     height="250"
+                    alt="New player icon"
                 />
                 <br/>
             </a>
-            <h1>I'm a new player</h1>
+            <h1>I&apos;m a new player</h1>
         </button>
     )
 }
@@ -54,11 +56,12 @@ function ExistingPlayerButton () {
                     src="/existing_user.png"
                     width="300"
                     height="250"
+                    alt="Existing player icon"
                 />
                 <br/>
                 
             </a>
-            <h1>I've been here before</h1>
+            <h1>I&apos;ve been here before</h1>
         </button>
     )
 }

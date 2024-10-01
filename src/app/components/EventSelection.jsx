@@ -4,17 +4,23 @@ import { useEffect, useState } from "react"
 const config = require("@/config.json")
 
 export default function EventSelection (props) {
-    if (!"events" in props) {
-        return
-    }
+    
 
     const [currentEvent, setCurrentEvent] = useState(null)
 
     useEffect( function () {
+        if (!"events" in props) {
+            // Nothing here, do nothing
+            return
+        }
         fetch(`http://${config["domain"]}/event/current`
         ).then( (r) => r.json()
         ).then( (json) => setCurrentEvent(json["current_event"]))
-    }, [])
+    }, [props])
+
+    if (!"events" in props) {
+        return
+    }
 
     const eventList = props.events.map(e => <option
         name={e[0]}

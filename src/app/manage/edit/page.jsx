@@ -1,6 +1,6 @@
 "use client"
 
-import { useEffect, useState } from "react"
+import { Suspense, useEffect, useState } from "react"
 import { useSearchParams } from "next/navigation"
 
 import "../../small.css"
@@ -9,7 +9,15 @@ import RedTextButton from "@/app/components/redbutton"
 
 const config = require("@/config.json")
 
-export default function EditPage () {
+export default function EditPageSuspense () {
+    return (
+        <Suspense>
+            <EditPage />
+        </Suspense>
+    )
+}
+
+export function EditPage () {
     const [playerData, setPlayerData] = useState({})
     const [isClient, setIsClient] = useState(false)
     let pid = useSearchParams().get('pid')
@@ -26,7 +34,7 @@ export default function EditPage () {
             Object.keys(json).forEach( (key) => returnObject[key] = json[key] == "null" ? "" : json[key])
             setPlayerData(returnObject)
         })
-    }, [])
+    }, [pid])
 
     if (!isClient || Object.keys(playerData).length == 0) {
         return // nothing, this avoid hydration errors

@@ -151,7 +151,7 @@ function NewPlayerForm () {
                     </tr>
                     <tr>
                         <td>
-                            <label>★ Phone number or parent's number</label>
+                            <label>★ Phone number or parent&apos;s number</label>
                             <input type="tel" name="phone" required onChange={(e) => setState({"first_name": s["first_name"], 
                                                                                                 "last_name": s["last_name"],
                                                                                                 "phone": e.target.value,
@@ -177,7 +177,7 @@ function NewPlayerForm () {
                     </tr>
                     <tr>
                         <td>
-                            <label>Parent/guardian's name (if under 18)</label>
+                            <label>Parent/guardian&apos;s name (if under 18)</label>
                             <input type="text" name="parent_name" onChange={(e) => setState({"first_name": s["first_name"], 
                                                                                             "last_name": s["last_name"],
                                                                                             "phone": s["phone"],

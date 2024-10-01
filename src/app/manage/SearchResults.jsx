@@ -5,12 +5,12 @@ export default function SearchResults (props) {
     if (typeof props.results != "object") {
         return (
             <p>
-                Use the "search database" button above to search the database. 
+                Use the &quot;search database&quot; button above to search the database. 
             </p>
         )
     }
     if (props.results["type"] == "attendance") {
-        let resultRows = props.results["data"].map( (e) => <AttendanceResultRow data={e}/>)
+        let resultRows = props.results["data"].map( (e) => <AttendanceResultRow key={`AttendanceResultRow:${e[0]}`} data={e}/>)
         return (
             <table id="results-list">
                 <thead>
@@ -47,7 +47,7 @@ export default function SearchResults (props) {
             </table>
         )
     } else {
-        let resultRows = props.results["data"].map( (e) => <PlayerResultsRow data={e}/>)
+        let resultRows = props.results["data"].map( (e) => <PlayerResultsRow key={`PlayerResultsRow:${e[0]}`} data={e}/>)
         return (
             <table id="results-list">
                 <thead>
