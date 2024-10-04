@@ -27,7 +27,7 @@ export function EditPage () {
         console.log("Fetching data")
         let urlParams = new URLSearchParams()
         urlParams.append("pid", pid)
-        fetch(`${config['domain']}/player?` + urlParams
+        fetch(`${config['domain']}/player?/` + urlParams
         ).then( (r) => r.json()
         ).then( function (json) {
             let returnObject = {}
@@ -212,7 +212,7 @@ function InformationForm (props) {
                             setSaveStatus("")
                             let urlParams = new URLSearchParams()
                             urlParams.append("pid", playerData["pid"])
-                            fetch(`${config['domain']}/player?` + urlParams
+                            fetch(`${config['domain']}/player?/` + urlParams
                             ).then( (r) => r.json()
                             ).then( function (json) {
                                 let returnObject = {}

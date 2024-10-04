@@ -22,7 +22,7 @@ export default function SubtractEventControl (props) {
         if (warning != "") {
             urlParams.append("cascade", "true")
         }
-        fetch(`${config['domain']}/event/rm?` + urlParams
+        fetch(`${config['domain']}/event/rm?/` + urlParams
         ).then( (e) => e.json()
         ).then( function (json) {
             if ("error" in json) {
