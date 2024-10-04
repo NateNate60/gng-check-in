@@ -13,7 +13,7 @@ export default function AddEventControl (props) {
     function addEvent () {
         let formData = new FormData()
         formData.append("ename", state)
-        fetch(`${config["domain"]}/event/new?/`
+        fetch(`${config["domain"]}/event/new/?`
         , {
             method: "POST",
             body: formData

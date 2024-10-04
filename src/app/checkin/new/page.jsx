@@ -88,7 +88,7 @@ function NewPlayerForm () {
                 pid = json["pid"]
 
                 // Check in the player to the current event
-                fetch(`${config["domain"]}/checkin?/pid=${pid}`, {
+                fetch(`${config["domain"]}/checkin/?pid=${pid}`, {
                     method: "GET"
                 }
                 ).then (

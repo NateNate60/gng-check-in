@@ -21,7 +21,7 @@ export default function PlayerResultsRow (props) {
     function deletePlayer () {
         let urlParams =  new URLSearchParams()
         urlParams.append("pid", props.data[0])
-        fetch(`${config['domain']}/player/rm?/` + urlParams, {
+        fetch(`${config['domain']}/player/rm/?` + urlParams, {
             method: "DELETE"
         }
         ).then( (r) => r.json()
@@ -35,7 +35,7 @@ export default function PlayerResultsRow (props) {
         <tr>
             {resultsRow}
             <td>
-                <WhiteTextButton text="Edit" href={"/manage/edit?/pid=" + props.data[0]} target="_blank"/>
+                <WhiteTextButton text="Edit" href={"/manage/edit/?pid=" + props.data[0]} target="_blank"/>
                 <DeleteButton onClick={deletePlayer}/>
             </td>
         </tr>
