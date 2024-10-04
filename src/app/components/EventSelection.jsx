@@ -13,7 +13,7 @@ export default function EventSelection (props) {
             // Nothing here, do nothing
             return
         }
-        fetch(`${config["domain"]}/event/current`
+        fetch(`${config["domain"]}/event/current/`
         ).then( (r) => r.json()
         ).then( (json) => setCurrentEvent(json["current_event"]))
     }, [props])

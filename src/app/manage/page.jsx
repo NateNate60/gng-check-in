@@ -15,7 +15,7 @@ export default function ManagementPage () {
     const [events, setEvents] = useState(["Loading..."])
 
     useEffect( function () {
-        fetch(`${config['domain']}/event`
+        fetch(`${config['domain']}/event/`
         ).then( (r) => r.json()
         ).then( (json) => setEvents(json))
     }, [])

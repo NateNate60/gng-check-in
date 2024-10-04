@@ -78,7 +78,7 @@ function NewPlayerForm () {
             formData.append("email", s["email"])
             formData.append("mtg_id", s["mtg_id"])
 
-            fetch(`${config["domain"]}/new`,
+            fetch(`${config["domain"]}/new/`,
                 {
                     method: "POST",
                     body: formData

@@ -195,7 +195,7 @@ function InformationForm (props) {
                             Object.keys(playerData).forEach(key => {
                                 formData.append(key, playerData[key])
                             });
-                            fetch(`${config['domain']}/player/edit`,
+                            fetch(`${config['domain']}/player/edit/`,
                                 {
                                     body: formData,
                                     method: "POST"
