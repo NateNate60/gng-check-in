@@ -9,7 +9,7 @@ export default function CurrentEventControl (props) {
     function changeEvent (eid) {
         let urlParams = new URLSearchParams()
         urlParams.append("eid", eid)
-        fetch(`http://${config["domain"]}/event/change?` + urlParams,
+        fetch(`${config["domain"]}/event/change?` + urlParams,
             {
                 method: "PATCH"
             }

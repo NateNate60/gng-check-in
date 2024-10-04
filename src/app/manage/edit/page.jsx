@@ -27,7 +27,7 @@ export function EditPage () {
         console.log("Fetching data")
         let urlParams = new URLSearchParams()
         urlParams.append("pid", pid)
-        fetch(`http://${config['domain']}/player?` + urlParams
+        fetch(`${config['domain']}/player?` + urlParams
         ).then( (r) => r.json()
         ).then( function (json) {
             let returnObject = {}
@@ -195,7 +195,7 @@ function InformationForm (props) {
                             Object.keys(playerData).forEach(key => {
                                 formData.append(key, playerData[key])
                             });
-                            fetch(`http://${config['domain']}/player/edit`,
+                            fetch(`${config['domain']}/player/edit`,
                                 {
                                     body: formData,
                                     method: "POST"
@@ -212,7 +212,7 @@ function InformationForm (props) {
                             setSaveStatus("")
                             let urlParams = new URLSearchParams()
                             urlParams.append("pid", playerData["pid"])
-                            fetch(`http://${config['domain']}/player?` + urlParams
+                            fetch(`${config['domain']}/player?` + urlParams
                             ).then( (r) => r.json()
                             ).then( function (json) {
                                 let returnObject = {}

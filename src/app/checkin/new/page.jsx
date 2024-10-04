@@ -78,7 +78,7 @@ function NewPlayerForm () {
             formData.append("email", s["email"])
             formData.append("mtg_id", s["mtg_id"])
 
-            fetch(`http://${config["domain"]}/new`,
+            fetch(`${config["domain"]}/new`,
                 {
                     method: "POST",
                     body: formData
@@ -88,7 +88,7 @@ function NewPlayerForm () {
                 pid = json["pid"]
 
                 // Check in the player to the current event
-                fetch(`http://${config["domain"]}/checkin?pid=${pid}`, {
+                fetch(`${config["domain"]}/checkin?pid=${pid}`, {
                     method: "GET"
                 }
                 ).then (
@@ -115,7 +115,7 @@ function NewPlayerForm () {
 
     return (
         <div>
-        <form name="infoform" id="info-form" method="POST" action={`http://${config["domain"]}/new`}>
+        <form name="infoform" id="info-form" method="POST" action={`${config["domain"]}/new`}>
             <p className="error-text centre-align">{s["errorText"]}</p>
             <table className="no-edge">
                 <thead>

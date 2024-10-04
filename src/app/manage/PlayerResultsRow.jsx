@@ -21,7 +21,7 @@ export default function PlayerResultsRow (props) {
     function deletePlayer () {
         let urlParams =  new URLSearchParams()
         urlParams.append("pid", props.data[0])
-        fetch(`http://${config['domain']}/player/rm?` + urlParams, {
+        fetch(`${config['domain']}/player/rm?` + urlParams, {
             method: "DELETE"
         }
         ).then( (r) => r.json()

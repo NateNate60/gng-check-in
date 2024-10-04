@@ -38,7 +38,7 @@ export default function SearchOptions (props) {
     }
 
     function search () {
-        fetch(`http://${config['domain']}/event/search?` + new URLSearchParams({
+        fetch(`${config['domain']}/event/search?` + new URLSearchParams({
             filter: state["filter"],
             type: state["type"],
             date: state["date"]
