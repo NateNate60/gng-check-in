@@ -27,3 +27,7 @@
 .event-control-button {
     float: inline-end;
 }
+
+.empty {
+    color: grey;
+}
