@@ -15,16 +15,16 @@ export default function AttendanceResultRow ({record, eventName}: AttendanceResu
             <td>
                 {record.surname}
             </td>
-            <td className={record.pokemonID ? "" : "empty"}>
+            <td className={record.pokemonID ? "" : "empty-cell"}>
                 {record.pokemonID ? record.pokemonID : "(empty)"}
             </td>
-            <td className={record.mhaID ? "" : "empty"}>
+            <td className={record.mhaID ? "" : "empty-cell"}>
                 {record.mhaID ? record.mhaID : "(empty)"}
             </td>
-            <td className={record.mtgID ? "" : "empty"}>
+            <td className={record.mtgID ? "" : "empty-cell"}>
                 {record.mtgID ? record.mtgID : "(empty)"}
             </td>
-            <td className={record.lorcanaID ? "" : "empty"}>
+            <td className={record.lorcanaID ? "" : "empty-cell"}>
                 {record.lorcanaID ? record.lorcanaID : "(empty)"}
             </td>
             <td>
