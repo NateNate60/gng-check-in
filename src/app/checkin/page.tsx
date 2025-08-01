@@ -7,12 +7,13 @@ import BackButton from "../components/backbutton.jsx"
 import BlueTextButton from "../components/bluebuttton.jsx"
 import GreenTextButton from "../components/greenbutton.jsx"
 import WhiteTextButton from "../components/whitebutton.jsx"
+import { QueryResult } from "@/types/Query"
 
 const config = require("@/config.json")
 
 export default function NewPlayerPage () {
 
-    const [searchResults, setSearchResults] = useState([])
+    const [searchResults, setSearchResults] = useState<Array<QueryResult>>([])
 
     return (
         <div >
@@ -23,7 +24,8 @@ export default function NewPlayerPage () {
             </div>
             
             <div className="no-edge">
-                <SearchBar onChange={ (e) => setSearchResults(e) }/>
+                <SearchBar onChange={ (e) => 
+                    setSearchResults(e) }/>
                 <NameQueryResults results={searchResults}/>
             </div>
             
@@ -31,12 +33,18 @@ export default function NewPlayerPage () {
     )
 }
 
-function SearchBar (props) {
+interface SearchBarProps {
+    onChange: (results: Array<QueryResult>) => void
+}
+
+function SearchBar ({onChange}: SearchBarProps) {
     
     function search (query) {
-        fetch(`${config["domain"]}/search/?query=${query}`,)
+        let params = new URLSearchParams()
+        params.append("query", query)
+        fetch(`/api/player/search/?${params}`,)
         .then( (x) => x.json())
-        .then( (json) => props.onChange(json))
+        .then( (json: Array<QueryResult>) => onChange(json))
         .catch( (e) => console.log(e) )
     }
     
@@ -52,8 +60,11 @@ function SearchBar (props) {
     )
 }
 
-function NameQueryResults (props) {
-    let results = props.results
+interface NameQueryResultsProps {
+    results: Array<QueryResult>
+}
+
+function NameQueryResults ({results}: NameQueryResultsProps) {
 
     if ("error" in results) {
         return (
@@ -72,7 +83,7 @@ function NameQueryResults (props) {
             
     }
 
-    let rows = results.map( (row) => <NameQueryRow entry={row} key={row["pid"]}/>)
+    let rows = results.map( (row) => <NameQueryRow rowData={row} key={row["pid"]}/>)
 
     return (
         <table className="centre-align">
@@ -100,9 +111,13 @@ function NameQueryResults (props) {
     )
 }
 
-function NameQueryRow (props) {
+interface NameRowProps {
+    rowData: QueryResult
+}
+
+function NameQueryRow ({rowData}: NameRowProps) {
     function checkIn (pid) {
-        fetch(`${config["domain"]}/checkin/?pid=${pid}`)
+        fetch(`/api/player/checkin?pid=${pid}`)
         .then( (r) => r.status)
         .then( function (status) {
             if (status == 200) {
@@ -116,16 +131,16 @@ function NameQueryRow (props) {
     return (
         <tr>
             <td className="given-name"> 
-                {props.entry["first_name"]}
+                {rowData.givenName}
             </td>
             <td className="surname">
-                {props.entry["last_name"]}
+                {rowData.surname}
             </td>
             <td className="phone">
-                XXX-XXX-{props.entry["phone_last4"]}
+                XXX-XXX-{rowData.phoneLastFour}
             </td>
             <td className="select-button">
-                <WhiteTextButton onClick={() => checkIn(props.entry["pid"])} text="Select"/>
+                <WhiteTextButton onClick={() => checkIn(rowData.pid)} text="Select"/>
             </td>
         </tr>
     )
