@@ -1,5 +1,4 @@
 import EventSelection from "../components/EventSelection"
-import WhiteTextButton from "../components/whitebutton"
 
 const config = require("@/config.json")
 
@@ -9,7 +8,7 @@ export default function CurrentEventControl (props) {
     function changeEvent (eid) {
         let urlParams = new URLSearchParams()
         urlParams.append("eid", eid)
-        fetch(`${config["domain"]}/event/change/?` + urlParams,
+        fetch(`/api/event/change/?` + urlParams,
             {
                 method: "PATCH"
             }
