@@ -6,5 +6,6 @@ export type AttendanceRecord = {
     mhaID: string,
     mtgID: string,
     lorcanaID: string,
-    eid: string
+    eid: string,
+    date: string
 }

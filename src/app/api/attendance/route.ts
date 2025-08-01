@@ -50,7 +50,8 @@ export async function GET (request: NextRequest) {
             mhaID: result["mha_id"],
             mtgID: result["mtg_id"],
             pid: result["pid"],
-            eid: result["event_type"]
+            eid: result["event_type"],
+            date: result["event_date"]
         })
     }
     return new NextResponse(JSON.stringify(records), {status: 200})
