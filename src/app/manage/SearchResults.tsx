@@ -1,16 +1,29 @@
+import { Player } from "@/types/Player"
 import AttendanceResultRow from "./AttendanceResultRow"
 import PlayerResultsRow from "./PlayerResultsRow"
+import { AttendanceRecord } from "@/types/AttendanceRecord"
+import { Events } from "@/types/Event"
 
-export default function SearchResults (props) {
-    if (typeof props.results != "object") {
+interface SearchResultsProps {
+    playerRecords: Array<Player>,
+    attendanceRecords: Array<AttendanceRecord>,
+    use: "players" | "attendance" | "",
+    events: Events
+}
+
+
+export default function SearchResults ({playerRecords, attendanceRecords, use, events}: SearchResultsProps) {
+    if (use === "") {
         return (
             <p>
                 Use the &quot;search database&quot; button above to search the database. 
             </p>
         )
     }
-    if (props.results["type"] == "attendance") {
-        let resultRows = props.results["data"].map( (e) => <AttendanceResultRow key={`AttendanceResultRow:${e[0]}`} data={e}/>)
+    if (use === "attendance") {
+        let resultRows = attendanceRecords.map( (e: AttendanceRecord) => <AttendanceResultRow key={`${e.date}:${e.eid}:${e.pid}`} 
+            record={e} eventName={events[e.eid]}
+        />)
         return (
             <table id="results-list">
                 <thead>
@@ -19,13 +32,10 @@ export default function SearchResults (props) {
                             Result count:
                         </th>
                         <td id="row-count">
-                            {props.results["data"].length}
+                            {attendanceRecords.length}
                         </td>
                     </tr>
                     <tr>
-                        <th>
-                            pid
-                        </th>
                         <th>
                             Given name
                         </th>
@@ -33,12 +43,23 @@ export default function SearchResults (props) {
                             Surname
                         </th>
                         <th>
+                            Pokemon ID
+                        </th>
+                        <th>
+                            MHA Email
+                        </th>
+                        <th>
+                            MTGA Email
+                        </th>
+                        <th>
+                            Lorcana Email
+                        </th>
+                        <th>
                             Attendance date
                         </th>
                         <th>
-                            Event category
+                            Event type
                         </th>
-                        <th></th>
                     </tr>
                 </thead>
                 <tbody>
@@ -47,7 +68,7 @@ export default function SearchResults (props) {
             </table>
         )
     } else {
-        let resultRows = props.results["data"].map( (e) => <PlayerResultsRow key={`PlayerResultsRow:${e[0]}`} data={e}/>)
+        let resultRows = playerRecords.map( (e) => <PlayerResultsRow key={`PlayerResultsRow:${e[0]}`} data={e}/>)
         return (
             <table id="results-list">
                 <thead>
@@ -56,7 +77,7 @@ export default function SearchResults (props) {
                             Result count:
                         </th>
                         <td id="row-count">
-                            {props.results["data"].length}
+                            {playerRecords.length}
                         </td>
                     </tr>
                     <tr>

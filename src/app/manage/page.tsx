@@ -79,7 +79,7 @@ export default function ManagementPage () {
                 }} events={events}/>
                 <EventControl events={events}/>
             </div>
-            <SearchResults/>
+            <SearchResults events={events} playerRecords={playerRecords} attendanceRecords={attendanceRecords} use={filter === 0 ? "players" : "attendance"}/>
             
         </div>
     )
