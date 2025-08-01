@@ -5,24 +5,23 @@ import {Events} from "@/types/Event"
 interface EventSelectionProps {
     events: Events,
     currentEvent: number,
-    onChange: (eid: Number) => void
+    onChange: (eid: number) => void,
+    disable?: boolean
 }
 
-export default function EventSelection ({events, currentEvent, onChange}: EventSelectionProps) {
-    
-
+export default function EventSelection ({events, currentEvent, onChange, disable}: EventSelectionProps) {
 
     const eventList = []
     for (let e in events) {
         eventList.push(<option
-                value={events[e]} key={e}>
+                value={e} key={e}>
                     {e}: {events[e]}
             </option>)
     }
     
     
     return (
-        <select value={currentEvent}
+        <select value={currentEvent} disabled={disable}
             onChange={ (e) => {
                 let target = Number(e.target.value)
                 if (target) {
