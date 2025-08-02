@@ -1,4 +1,5 @@
 export type Player = {
+    pid: number,
     givenName: string,
     surname: string,
     phone: string,
