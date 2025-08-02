@@ -1,7 +1,7 @@
 export default function MonthSelection (props) {
     if (!props.disable) {
         return (
-            <input type="month" onChange={props.onChange}/>
+            <input type="month" onChange={props.onChange} value={props.month}/>
         )
     }
 

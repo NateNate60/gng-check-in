@@ -11,17 +11,26 @@ const config = require("@/config.json")
 
 interface SearchOptionProps {
     events: Events,
-    applyFilter: (date: string, filter: number, event: number) => void
+    applyFilter: (date: string, month: string, filter: number, event: number) => void
 }
 
 export default function SearchOptions ({events, applyFilter}: SearchOptionProps) {
 
     const [date, setDate] = useState<string>("")
+    const [month, setMonth] = useState<string>("")
     const [filter, setFilter] = useState<number>(0)
-    const [event, setEvent] = useState<number>(0)
+    const [event, setEvent] = useState<number>(NaN)
 
 
-    useEffect(() => applyFilter(date, filter, event), [])
+    useEffect(() => applyFilter(date, month, filter, event), [])
+
+    if (isNaN(event)) {
+        let keys = Object.keys(events).map(Number);
+        if (keys.length !== 0) {
+            setEvent(Math.min(...keys))
+        }
+        
+    }
 
     return (
         <form id="search-options">
@@ -88,7 +97,7 @@ export default function SearchOptions ({events, applyFilter}: SearchOptionProps)
                         in the month
                     </td>
                     <td>
-                        <MonthSelection disable={filter != 4} onChange={(e) => setDate(e.target.value)} />
+                        <MonthSelection disable={filter != 4} onChange={(e) => setMonth(e.target.value)} month={month}/>
                     </td>
                 </tr>
                 <tr>
@@ -97,7 +106,7 @@ export default function SearchOptions ({events, applyFilter}: SearchOptionProps)
                 <tr>
                     <td></td>
                     <td>
-                        <WhiteTextButton text="Search database" onClick={() => applyFilter(date, filter, event)}/>
+                        <WhiteTextButton text="Search database" onClick={() => applyFilter(date, month, filter, event)}/>
                         &nbsp; &nbsp;
                         <BlueTextButton text="Export to CSV"/>
                     </td>

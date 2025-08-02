@@ -29,7 +29,7 @@ export async function GET (request: NextRequest) {
     for (let result of results) {
         return new NextResponse(JSON.stringify({
             events: events,
-            activeEvent: new Number(result["setting"])
+            activeEvent: new Number(result["value"])
         }), {status: 200})
     }
 }
