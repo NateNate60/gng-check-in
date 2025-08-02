@@ -68,7 +68,7 @@ export default function SearchResults ({playerRecords, attendanceRecords, use, e
             </table>
         )
     } else {
-        let resultRows = playerRecords.map( (e) => <PlayerResultsRow key={`PlayerResultsRow:${e[0]}`} data={e}/>)
+        let resultRows = playerRecords.map( (e) => <PlayerResultsRow key={`PlayerResultsRow:${e[0]}`} record={e}/>)
         return (
             <table id="results-list">
                 <thead>

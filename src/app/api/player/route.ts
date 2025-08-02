@@ -11,6 +11,7 @@ export async function GET (request: NextRequest) {
     let players: Array<Player> = []
     for (let result of results) {
         players.push({
+            pid: result["pid"],
             givenName: result["fname"],
             surname: result["lname"],
             phone: result["phone"],
