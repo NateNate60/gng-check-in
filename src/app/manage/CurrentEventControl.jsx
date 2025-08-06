@@ -12,7 +12,7 @@ export default function CurrentEventControl (props) {
             {
                 method: "PATCH"
             }
-        )
+        ).then( () => props.onChange(eid))
     }
 
     return (
@@ -25,7 +25,7 @@ export default function CurrentEventControl (props) {
             </p>
             <span id="current-event-selector">
                 {/* Also doesn't work when moved to CSS stylesheet */}
-                <EventSelection events={props.events} onChange={ (e) => changeEvent(e) }/>
+                <EventSelection events={props.events} currentEvent={props.currentEvent} onChange={ (e) => changeEvent(e) }/>
             </span>
             <p className="right-align">
                 (saves automatically)

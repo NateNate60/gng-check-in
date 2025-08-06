@@ -9,7 +9,7 @@ export default function EventControl (props) {
         <div className="right-align" id="event-control">
             <AddEventControl />
             <SubtractEventControl events={props.events}/>
-            <CurrentEventControl events={props.events}/>
+            <CurrentEventControl events={props.events} currentEvent={props.currentEvent} onChange={(eid) => props.onChange(eid)}/>
         </div>
     )
 }

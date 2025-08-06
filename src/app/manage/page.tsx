@@ -15,7 +15,7 @@ const config = require("@/config.json")
 
 export default function ManagementPage () {
     const [events, setEvents] = useState<Events>({})
-
+    const [currentEvent, setCurrentEvent] = useState<number>(NaN)
     const [filter, setFilter] = useState<number>(NaN)
 
     const [playerRecords, setPlayerRecords] = useState<Array<Player>>([])
@@ -25,6 +25,7 @@ export default function ManagementPage () {
         .then( (result) => result.json())
         .then( (data) => {
             setEvents(data["events"])
+            setCurrentEvent(data["activeEvent"])
         })
     }
 
@@ -74,7 +75,7 @@ export default function ManagementPage () {
             </div>
             <div>
                 <SearchOptions applyFilter={refresh} events={events}/>
-                <EventControl events={events}/>
+                <EventControl events={events} currentEvent={currentEvent} onChange={(eid) => setCurrentEvent(eid)}/>
             </div>
             <SearchResults events={events} playerRecords={playerRecords} attendanceRecords={attendanceRecords} use={filter === 0 ? "players" : "attendance"}/>
             
