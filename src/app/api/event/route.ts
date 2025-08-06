@@ -14,7 +14,7 @@ export async function PATCH (request: NextRequest) {
     if (result.affectedRows != 1) {
         return new NextResponse('{"error": "An unknown database error has occurred"}')
     }
-    return new NextResponse('{}', {status: 204})
+    return new NextResponse('{}', {status: 200})
 }
 
 export async function GET (request: NextRequest) {
