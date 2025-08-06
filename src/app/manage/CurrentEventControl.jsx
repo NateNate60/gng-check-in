@@ -8,7 +8,7 @@ export default function CurrentEventControl (props) {
     function changeEvent (eid) {
         let urlParams = new URLSearchParams()
         urlParams.append("eid", eid)
-        fetch(`/api/event/change/?` + urlParams,
+        fetch(`/api/event?` + urlParams,
             {
                 method: "PATCH"
             }
@@ -25,7 +25,7 @@ export default function CurrentEventControl (props) {
             </p>
             <span id="current-event-selector">
                 {/* Also doesn't work when moved to CSS stylesheet */}
-                <EventSelection events={props.events} onChange={ (e) => changeEvent(e.target.value) }/>
+                <EventSelection events={props.events} onChange={ (e) => changeEvent(e) }/>
             </span>
             <p className="right-align">
                 (saves automatically)

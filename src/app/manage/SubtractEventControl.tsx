@@ -8,9 +8,9 @@ const config = require("@/config.json")
 // Component that renders the dialogue to delete an event
 export default function SubtractEventControl (props) {
 
-    const [state, setState] = useState("")
-    const [warning, setWarning] = useState("")
-    const [confirmDelete, setConfirm] = useState(false)
+    const [state, setState] = useState<number>(NaN)
+    const [warning, setWarning] = useState<string>("")
+    const [confirmDelete, setConfirm] = useState<boolean>(false)
 
     function subtractEvent () {
         if (!confirmDelete) {
@@ -18,11 +18,13 @@ export default function SubtractEventControl (props) {
             return
         }
         let urlParams = new URLSearchParams()
-        urlParams.append("eid", state)
+        urlParams.append("eid", state.toString())
         if (warning != "") {
             urlParams.append("cascade", "true")
         }
-        fetch(`${config['domain']}/event/rm/?` + urlParams
+        fetch(`/api/event?` + urlParams, {
+            method: "DELETE"
+        }
         ).then( (e) => e.json()
         ).then( function (json) {
             if ("error" in json) {
@@ -33,12 +35,6 @@ export default function SubtractEventControl (props) {
             }
         })
         
-    }
-
-    function onChange (event) {
-        setConfirm(false)
-        setWarning("")
-        setState(event.target.value)
     }
 
     return (
@@ -54,7 +50,11 @@ export default function SubtractEventControl (props) {
                     {warning == "Event has attendance records." ? "Press again to delete the event and all attendance records." : ""}
                 </span>
             </p>
-            <EventSelection events={props.events} onChange={ onChange }/>
+            <EventSelection events={props.events} currentEvent={state} onChange={ (eid) => {
+                setConfirm(false)
+                setWarning("")
+                setState(eid)
+            } }/>
 
             <span className="event-control-button">
                 <RedTextButton text={confirmDelete ? "Confirm": "Delete"} onClick={subtractEvent}/>

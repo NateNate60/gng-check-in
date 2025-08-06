@@ -13,7 +13,7 @@ export default function AddEventControl () {
     function addEvent () {
         let params = new URLSearchParams()
         params.append("name", name)
-        fetch(`/api/event/new?${params}`
+        fetch(`/api/event?${params}`
         , {
             method: "PUT"
         }

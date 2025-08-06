@@ -46,7 +46,11 @@ export default function PlayerResultsRow ({record}: PlayerResultsRowProps) {
             <td>
                 <WhiteTextButton text="Edit" href={`/manage/edit/?${params}`} target="_blank"/>
                 <DeleteButton onClick={() => {
-
+                    let params = new URLSearchParams()
+                    params.append("pid", record.pid.toString())
+                    fetch(`/api/player?` + params, {
+                        method: "DELETE"
+                    })
                 }}/>
             </td>
         </tr>

@@ -33,3 +33,40 @@ export async function GET (request: NextRequest) {
         }), {status: 200})
     }
 }
+
+export async function PUT (request: NextRequest) {
+    let eventName = request.nextUrl.searchParams.get("name")
+
+    if (!eventName) {
+        return new NextResponse(JSON.stringify({"error": "No name provided"}), {status: 401})
+    }
+
+    const connection = await mysql.createConnection(AccessCredentials)
+
+    let [result, packets] = await connection.query("INSERT INTO Events VALUES (NULL, ?)", eventName)
+    
+    if (result.affectedRows !== 1) {
+        return new NextResponse('{"error": "An unknown server error has occurred."}', {status: 201})
+    }
+
+    return new NextResponse("{}", {status: 201})
+}
+
+export async function DELETE (request: NextRequest) {
+    let eventName = request.nextUrl.searchParams.get("eid")
+
+    if (!eventName) {
+        return new NextResponse(JSON.stringify({"error": "No event ID provided"}), {status: 401})
+    }
+
+    const connection = await mysql.createConnection(AccessCredentials)
+
+    await connection.query("DELETE FROM EventAttendance WHERE event_type = ?", eventName)
+    let [result, packets] = await connection.query("DELETE FROM Events WHERE event_type = ?", eventName)
+    
+    if (result.affectedRows !== 1) {
+        return new NextResponse('{"error": "An unknown server error has occurred."}', {status: 201})
+    }
+
+    return new NextResponse("{}", {status: 200})
+}
