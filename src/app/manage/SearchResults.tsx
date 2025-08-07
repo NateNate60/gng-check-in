@@ -8,11 +8,12 @@ interface SearchResultsProps {
     playerRecords: Array<Player>,
     attendanceRecords: Array<AttendanceRecord>,
     use: "players" | "attendance" | "",
-    events: Events
+    events: Events,
+    eligiblePlayers: Array<number>
 }
 
 
-export default function SearchResults ({playerRecords, attendanceRecords, use, events}: SearchResultsProps) {
+export default function SearchResults ({playerRecords, attendanceRecords, use, events, eligiblePlayers}: SearchResultsProps) {
     if (use === "") {
         return (
             <p>
@@ -68,7 +69,7 @@ export default function SearchResults ({playerRecords, attendanceRecords, use, e
             </table>
         )
     } else {
-        let resultRows = playerRecords.map( (e) => <PlayerResultsRow key={`PlayerResultsRow:${e[0]}`} record={e}/>)
+        let resultRows = playerRecords.map( (e) => <PlayerResultsRow key={`PlayerResultsRow:${e.pid}`} record={e} pokeball={eligiblePlayers.includes(e.pid)}/>)
         return (
             <table id="results-list">
                 <thead>
@@ -82,7 +83,7 @@ export default function SearchResults ({playerRecords, attendanceRecords, use, e
                     </tr>
                     <tr>
                         <th>
-                            pid
+                            
                         </th>
                         <th>
                             Given name

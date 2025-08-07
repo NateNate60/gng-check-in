@@ -2,19 +2,21 @@ import { Player } from "@/types/Player"
 import DeleteButton from "../components/DeleteButton"
 import RedTextButton from "../components/redbutton"
 import WhiteTextButton from "../components/whitebutton"
+import Image from "next/image"
 
 
 interface PlayerResultsRowProps {
-    record: Player
+    record: Player,
+    pokeball: boolean
 }
 
-export default function PlayerResultsRow ({record}: PlayerResultsRowProps) {
+export default function PlayerResultsRow ({record, pokeball}: PlayerResultsRowProps) {
     let params = new URLSearchParams()
     params.append("pid", record.pid.toString())
     return (
         <tr>
             <td>
-                {record.pid}
+                {pokeball ? <Image width={20} height={20} src={"/pokeball.png"} alt="This player is eligible to buy a Pokémon product"/> : undefined}
             </td>
             <td>
                 {record.givenName}

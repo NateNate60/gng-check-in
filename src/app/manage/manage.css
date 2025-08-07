@@ -1,11 +1,16 @@
 #event-control {
     display: inline-block;
-    width: 30%;
+    width: 25%;
     padding-right: 5%;
 }
 
+#settings-control {
+    width: 20%;
+    display: inline-block;
+}
+
 #search-options {
-    width: 60%;
+    width: 40%;
     text-align: left;
     display: inline-block;
 }
@@ -26,4 +31,8 @@
 
 .event-control-button {
     float: inline-end;
+}
+
+.numeric-input {
+    width: 4em
 }

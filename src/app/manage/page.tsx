@@ -10,6 +10,7 @@ import EventControl from "./EventControl"
 import { Events } from "@/types/Event"
 import { Player } from "@/types/Player"
 import { AttendanceRecord } from "@/types/AttendanceRecord"
+import SettingsControl from "./SettingsControl"
 
 const config = require("@/config.json")
 
@@ -20,13 +21,20 @@ export default function ManagementPage () {
 
     const [playerRecords, setPlayerRecords] = useState<Array<Player>>([])
     const [attendanceRecords, setAttendanceRecords] = useState<Array<AttendanceRecord>>([])
-    function fetchEvents () {
+
+    const [eligiblePlayers, setEligiblePlayers] = useState<Array<number>>([])
+
+    function fetchData () {
         fetch(`/api/event`)
         .then( (result) => result.json())
         .then( (data) => {
             setEvents(data["events"])
             setCurrentEvent(data["activeEvent"])
         })
+
+        fetch(`/api/eligibility/players`)
+        .then( (result) => result.json())
+        .then( (data) => setEligiblePlayers(data))
     }
 
     function refresh (date: string, month: string, appliedFilter: number, event: number) {
@@ -65,7 +73,7 @@ export default function ManagementPage () {
         setFilter(appliedFilter)
     }
 
-    useEffect( fetchEvents, [])
+    useEffect( fetchData, [])
 
     return (
         <div>
@@ -75,9 +83,10 @@ export default function ManagementPage () {
             </div>
             <div>
                 <SearchOptions applyFilter={refresh} events={events}/>
+                <SettingsControl events={events} triggerRefresh={fetchData}/>
                 <EventControl events={events} currentEvent={currentEvent} onChange={(eid) => setCurrentEvent(eid)}/>
             </div>
-            <SearchResults events={events} playerRecords={playerRecords} attendanceRecords={attendanceRecords} use={filter === 0 ? "players" : "attendance"}/>
+            <SearchResults events={events} playerRecords={playerRecords} attendanceRecords={attendanceRecords} eligiblePlayers={eligiblePlayers} use={filter === 0 ? "players" : "attendance"}/>
             
         </div>
     )
