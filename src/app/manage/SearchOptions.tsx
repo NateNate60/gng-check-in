@@ -11,10 +11,11 @@ const config = require("@/config.json")
 
 interface SearchOptionProps {
     events: Events,
-    applyFilter: (date: string, month: string, filter: number, event: number) => void
+    applyFilter: (date: string, month: string, filter: number, event: number) => void,
+    exportClick: () => void
 }
 
-export default function SearchOptions ({events, applyFilter}: SearchOptionProps) {
+export default function SearchOptions ({events, applyFilter, exportClick}: SearchOptionProps) {
 
     const [date, setDate] = useState<string>("")
     const [month, setMonth] = useState<string>("")
@@ -108,7 +109,7 @@ export default function SearchOptions ({events, applyFilter}: SearchOptionProps)
                     <td>
                         <WhiteTextButton text="Search database" onClick={() => applyFilter(date, month, filter, event)}/>
                         &nbsp; &nbsp;
-                        <BlueTextButton text="Export to CSV"/>
+                        <BlueTextButton text="Export to CSV" onClick={() => exportClick()}/>
                     </td>
                 </tr>
             </tbody>

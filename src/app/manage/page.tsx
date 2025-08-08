@@ -82,7 +82,28 @@ export default function ManagementPage () {
                 <BackButton />
             </div>
             <div>
-                <SearchOptions applyFilter={refresh} events={events}/>
+                <SearchOptions applyFilter={refresh} events={events} exportClick={() => {
+                    let data = ""
+                    if (filter === 0) {
+                        data += "Given name,Surname,Phone number,Birthdate,Parent name,Pokemon ID,MHA email,MTGA email,Lorcana email\n"
+                        playerRecords.map( (player) => { data +=
+                            `"${player.givenName}","${player.surname}","${player.phone}","${player.birthdate}","${player.parentName}",` + 
+                            `"${player.pokemonID}","${player.mhaID}","${player.mtgID}","${player.lorcanaID}"\n`
+                        })
+                    } else {
+                        data += "Given name,Surname,Pokemon ID,MHA email,MTGA email,Lorcana email,Attendance Date,Event Type\n"
+                        attendanceRecords.map( (record) => { data +=
+                            `"${record.givenName}","${record.surname}",` + 
+                            `"${record.pokemonID}","${record.mhaID}","${record.mtgID}","${record.lorcanaID}",` +
+                            `"${record.date}","${events[record.eid]}"\n`
+                        })
+                    }
+                    let contents = new Blob([data], {type: "text/csv"})
+                    let file = document.createElement('a')
+                    file.download = `ExportedRecords${new Date().toISOString().slice(0, 10)}`
+                    file.href = window.URL.createObjectURL(contents)
+                    file.click()
+                }}/>
                 <SettingsControl events={events} triggerRefresh={fetchData}/>
                 <EventControl events={events} currentEvent={currentEvent} onChange={(eid) => setCurrentEvent(eid)}/>
             </div>
