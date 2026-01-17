@@ -8,7 +8,7 @@ export async function POST (request: Request) {
     
     const connection = await mysql.createConnection(AccessCredentials)
 
-    let [result, packets] = await connection.query("INSERT INTO Players VALUES (NULL, ?, ?, ?, ?, ?, ?, ?, ?, ?)", [
+    let [result, packets] = await connection.query<any>("INSERT INTO Players VALUES (NULL, ?, ?, ?, ?, ?, ?, ?, ?, ?)", [
         newPlayer.givenName,
         newPlayer.surname,
         newPlayer.phone,
@@ -21,7 +21,7 @@ export async function POST (request: Request) {
     ])
 
     if (result.affectedRows === 1) {
-        let attendenceQuery = await connection.query("INSERT INTO EventAttendance VALUES ((SELECT MAX(pid) FROM Players), (SELECT CURDATE()), (SELECT value FROM Settings WHERE setting = 'active_event')) ")
+        let attendenceQuery = await connection.query<any>("INSERT INTO EventAttendance VALUES ((SELECT MAX(pid) FROM Players), (SELECT CURDATE()), (SELECT value FROM Settings WHERE setting = 'active_event')) ")
         return new Response(JSON.stringify({"success": true}))
     }
 

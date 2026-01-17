@@ -12,7 +12,7 @@ export async function GET (request: NextRequest) {
         return new Response(JSON.stringify([]))
     }
 
-    let results = await connection.query("SELECT pid, fname, lname, phone FROM Players WHERE CONCAT(fname, lname) LIKE CONCAT('%', ?, '%')", query)
+    let results = await connection.query<any>("SELECT pid, fname, lname, phone FROM Players WHERE CONCAT(fname, lname) LIKE CONCAT('%', ?, '%')", query)
     let rows: Array<QueryResult> = []
     for (let result of results[0]) {
         if ('pid' in result) {

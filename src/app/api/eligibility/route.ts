@@ -5,7 +5,7 @@ import { AccessCredentials } from "@/types/Access";
 export async function GET (request: NextRequest) {
     const connection = await mysql.createConnection(AccessCredentials)
 
-    let [results, packets] = await connection.query("SELECT value FROM Settings WHERE setting IN ('pokeball_count', 'pokeball_days', 'pokeball_event')")
+    let [results, packets] = await connection.query<any>("SELECT value FROM Settings WHERE setting IN ('pokeball_count', 'pokeball_days', 'pokeball_event')")
 
     return new NextResponse(JSON.stringify({
         count: results[0]["value"],
@@ -27,9 +27,9 @@ export async function PUT (request: NextRequest) {
     let days = Number(data["days"])
     let eid = Number(data["eid"])
 
-    await connection.query("UPDATE Settings SET value = ? WHERE setting = 'pokeball_count'", count)
-    await connection.query("UPDATE Settings SET value = ? WHERE setting = 'pokeball_days'", days)
-    await connection.query("UPDATE Settings SET value = ? WHERE setting = 'pokeball_event'", eid)
+    await connection.query<any>("UPDATE Settings SET value = ? WHERE setting = 'pokeball_count'", count)
+    await connection.query<any>("UPDATE Settings SET value = ? WHERE setting = 'pokeball_days'", days)
+    await connection.query<any>("UPDATE Settings SET value = ? WHERE setting = 'pokeball_event'", eid)
 
     return new NextResponse('{}')
 }

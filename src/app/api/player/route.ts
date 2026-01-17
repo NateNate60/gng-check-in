@@ -13,7 +13,7 @@ export async function GET (request: NextRequest) {
         query += " WHERE pid = ?"
     }
 
-    let [results, packets] = await connection.query(query, pid ?? undefined)
+    let [results, packets] = await connection.query<any>(query, pid ?? undefined)
     let players: Array<Player> = []
     for (let result of results) {
         players.push({
@@ -43,7 +43,7 @@ export async function DELETE (request: NextRequest) {
 
     const connection = await mysql.createConnection(AccessCredentials)
 
-    let [results, packets] = await connection.query("DELETE FROM Players WHERE pid = ?", pid)
+    let [results, packets] = await connection.query<any>("DELETE FROM Players WHERE pid = ?", pid)
     if (results.affectedRows !== 1) {
         return new NextResponse('{"error": "An unknown error has occurred"}', {status: 500})
     }
@@ -59,7 +59,7 @@ export async function PATCH (request: NextRequest) {
 
     const connection = await mysql.createConnection(AccessCredentials)
 
-    let [results, packets] = await connection.query("UPDATE Players SET fname = ?, lname = ?, " +
+    let [results, packets] = await connection.query<any>("UPDATE Players SET fname = ?, lname = ?, " +
                                                     "phone = ?, bday = ?, parent_name = ?, " + 
                                                     "pokemon_id = ?, mha_id = ?, mtg_id = ?, email = ? " +
                                                     "WHERE pid = ?",

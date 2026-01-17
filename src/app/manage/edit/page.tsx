@@ -18,7 +18,7 @@ export default function EditPageSuspense () {
     )
 }
 
-export function EditPage () {
+function EditPage () {
     const [playerData, setPlayerData] = useState<Player>()
     const [isClient, setIsClient] = useState<boolean>(false)
     let pid = useSearchParams().get('pid')

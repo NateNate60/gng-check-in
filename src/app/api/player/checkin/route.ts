@@ -11,10 +11,10 @@ export async function GET (request: NextRequest) {
 
     const connection = await mysql.createConnection(AccessCredentials)
 
-    let [result, packets] = await connection.query("INSERT INTO EventAttendance VALUES (?, CURDATE(), (SELECT value FROM Settings WHERE setting = 'active_event'));", pid)
+    let [result, packets] = await connection.query<any>("INSERT INTO EventAttendance VALUES (?, CURDATE(), (SELECT value FROM Settings WHERE setting = 'active_event'));", pid)
 
     if (result.affectedRows == 1) {
         return new NextResponse(JSON.stringify({}))
     }
-    return new NextRequest(JSON.stringify({"error": "Duplicate check-in"}))
+    return new NextResponse(JSON.stringify({"error": "Duplicate check-in"}))
 }

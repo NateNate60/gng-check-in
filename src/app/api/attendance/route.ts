@@ -39,7 +39,7 @@ export async function GET (request: NextRequest) {
                       "FROM Players INNER JOIN EventAttendance ON Players.pid = EventAttendance.pid "
     }
 
-    let [results, packets] = await connection.query(queryString, values)
+    let [results, packets] = await connection.query<any>(queryString, values)
     let records: Array<AttendanceRecord> = []
     for (let result of results) {
         records.push({
