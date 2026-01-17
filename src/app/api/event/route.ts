@@ -11,6 +11,7 @@ export async function PATCH (request: NextRequest) {
     
     const connection = await mysql.createConnection(AccessCredentials)
     let [result, packets] = await connection.query<any>("UPDATE Settings SET value = ? WHERE setting = 'active_event'", eid)
+    connection.end()
     if (result.affectedRows != 1) {
         return new NextResponse('{"error": "An unknown database error has occurred"}')
     }
@@ -26,6 +27,7 @@ export async function GET (request: NextRequest) {
         events[result["event_type"]] = result["event_name"]
     }
     [results, packets] = await connection.query<any>("SELECT value FROM Settings WHERE setting = 'active_event'")
+    connection.end()
     for (let result of results) {
         return new NextResponse(JSON.stringify({
             events: events,
@@ -44,7 +46,8 @@ export async function PUT (request: NextRequest) {
     const connection = await mysql.createConnection(AccessCredentials)
 
     let [result, packets] = await connection.query<any>("INSERT INTO Events VALUES (NULL, ?)", eventName)
-    
+    connection.end()
+
     if (result.affectedRows !== 1) {
         return new NextResponse('{"error": "An unknown server error has occurred."}', {status: 201})
     }
@@ -63,6 +66,7 @@ export async function DELETE (request: NextRequest) {
 
     await connection.query<any>("DELETE FROM EventAttendance WHERE event_type = ?", eventName)
     let [result, packets] = await connection.query<any>("DELETE FROM Events WHERE event_type = ?", eventName)
+    connection.end()
     
     if (result.affectedRows !== 1) {
         return new NextResponse('{"error": "An unknown server error has occurred."}', {status: 201})

@@ -12,7 +12,8 @@ export async function GET (request: NextRequest) {
     const connection = await mysql.createConnection(AccessCredentials)
 
     let [result, packets] = await connection.query<any>("INSERT INTO EventAttendance VALUES (?, CURDATE(), (SELECT value FROM Settings WHERE setting = 'active_event'));", pid)
-
+    connection.end()
+    
     if (result.affectedRows == 1) {
         return new NextResponse(JSON.stringify({}))
     }
