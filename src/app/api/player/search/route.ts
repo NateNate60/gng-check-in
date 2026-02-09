@@ -25,6 +25,6 @@ export async function GET (request: NextRequest) {
         }
         
     }
-    connection.end()
+    await connection.end()
     return new Response(JSON.stringify(rows))
 }

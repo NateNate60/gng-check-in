@@ -29,7 +29,7 @@ export async function GET (request: NextRequest) {
             parentName: result["parent_name"]
         })
     }
-    connection.end()
+    await connection.end()
     return new NextResponse(JSON.stringify(players), {status: 200})
     
 }
@@ -45,7 +45,7 @@ export async function DELETE (request: NextRequest) {
     const connection = await mysql.createConnection(AccessCredentials)
 
     let [results, packets] = await connection.query<any>("DELETE FROM Players WHERE pid = ?", pid)
-    connection.end()
+    await connection.end()
     if (results.affectedRows !== 1) {
         return new NextResponse('{"error": "An unknown error has occurred"}', {status: 500})
     }
@@ -77,7 +77,7 @@ export async function PATCH (request: NextRequest) {
                                                         data.lorcanaID,
                                                         data.pid
                                                     ])
-    connection.end()
+    await connection.end()
     if (results.affectedRows !== 1) {
         return new NextResponse('{"error": "Database error"}', {status: 500})
     }

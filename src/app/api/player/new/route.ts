@@ -22,10 +22,10 @@ export async function POST (request: Request) {
 
     if (result.affectedRows === 1) {
         let attendenceQuery = await connection.query<any>("INSERT INTO EventAttendance VALUES ((SELECT MAX(pid) FROM Players), (SELECT CURDATE()), (SELECT value FROM Settings WHERE setting = 'active_event')) ")
-        connection.end()
+        await connection.end()
         return new Response(JSON.stringify({"success": true}))
     }
 
-    connection.end()
+    await connection.end()
     return new Response(JSON.stringify({}), { status: 500 })
 }
