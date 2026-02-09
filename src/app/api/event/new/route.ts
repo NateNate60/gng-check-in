@@ -13,10 +13,10 @@ export async function PUT (request: NextRequest) {
 
     let [result, packets] = await connection.query<any>("INSERT INTO Events VALUES (NULL, ?)", eventName)
     
+    connection.end()
     if (result.affectedRows !== 1) {
         return new NextResponse('{"error": "An unknown server error has occurred."}', {status: 201})
     }
-    connection.end()
 
     return new NextResponse("{}", {status: 201})
 }

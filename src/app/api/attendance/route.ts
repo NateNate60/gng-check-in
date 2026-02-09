@@ -54,5 +54,6 @@ export async function GET (request: NextRequest) {
             date: result["event_date"]
         })
     }
+    await connection.end()
     return new NextResponse(JSON.stringify(records), {status: 200})
 }

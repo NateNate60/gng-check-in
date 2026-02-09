@@ -17,5 +17,7 @@ export async function GET (request: NextRequest) {
                                                        "GROUP BY pid) AS AttendanceCount " +
                                                        "WHERE AttendanceCount.pid_count >= (SELECT value FROM Settings WHERE setting = 'pokeball_count')",
                                                        cutoff.toISOString().slice(0, 10))
+    
+    await connection.end()
     return new NextResponse(JSON.stringify(response2.map( (value) => value.pid)))
 }
