@@ -4,13 +4,13 @@ import { QueryResult } from '@/types/Query';
 import { NextRequest } from 'next/server';
 
 export async function GET (request: NextRequest) {
-    const connection = await mysql.createConnection(AccessCredentials)
-    
     let query = request.nextUrl.searchParams.get("query")
 
     if (!query) {
         return new Response(JSON.stringify([]))
     }
+    
+    const connection = await mysql.createConnection(AccessCredentials)
 
     let results = await connection.query<any>("SELECT pid, fname, lname, phone FROM Players WHERE CONCAT(fname, lname) LIKE CONCAT('%', ?, '%')", query)
     let rows: Array<QueryResult> = []
