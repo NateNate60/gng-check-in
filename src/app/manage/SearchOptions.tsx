@@ -78,7 +78,7 @@ export default function SearchOptions ({events, applyFilter, exportClick}: Searc
                         Show all attendance records for the date
                     </td>
                     <td>
-                        <DateSelection onChange={(e) => setDate(e)} disable={filter != 3} />
+                        <DateSelection onChange={(e) => setDate(e.target.value)} disable={filter != 3} />
                     </td>
                     <td>
                         for all events
